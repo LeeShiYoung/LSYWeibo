@@ -54,6 +54,16 @@ class LSYPhotoBrowserViewController: UICollectionViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SDWebImageManager.sharedManager().cancelAll()
+    }
+    
+    deinit {
+     
+        print("photobrowser 死")
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -80,6 +90,8 @@ extension LSYPhotoBrowserViewController {
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
         return UIStatusBarAnimation.Slide
     }
+    
+    
 }
 
 extension LSYPhotoBrowserViewController: LSYTransitionAnimatorDelegate
