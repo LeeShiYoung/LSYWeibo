@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JJY-wK-A2R">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Picture Select Collection View Controller-->
+        <scene sceneID="7EC-EO-TBF">
+            <objects>
+                <collectionViewController id="JJY-wK-A2R" customClass="PictureSelectCollectionViewController" customModule="LSYWeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6gm-ED-eNp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HAx-ch-zfq" customClass="PictureSelectorFlowLayout" customModule="LSYWeiBo" customModuleProvider="target">
+                            <size key="itemSize" width="112" height="105"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PictureSelectorReuseIdentifier" id="nMh-rJ-zO8" customClass="PictureButtonCollectionViewCell" customModule="LSYWeiBo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="112" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="112" height="105"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaL-Je-xfh">
+                                            <rect key="frame" x="0.0" y="0.0" width="112" height="105"/>
+                                            <state key="normal" backgroundImage="compose_pic_add"/>
+                                            <connections>
+                                                <action selector="selectBtnClick:" destination="nMh-rJ-zO8" eventType="touchUpInside" id="vOB-QL-hOl"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okF-9L-rJ8">
+                                            <rect key="frame" x="86" y="2" width="24" height="24"/>
+                                            <state key="normal" backgroundImage="compose_photo_close"/>
+                                            <connections>
+                                                <action selector="removeBtnClick:" destination="nMh-rJ-zO8" eventType="touchUpInside" id="Osb-5s-g3U"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="KaL-Je-xfh" firstAttribute="leading" secondItem="nMh-rJ-zO8" secondAttribute="leading" id="8UD-oH-RQ5"/>
+                                    <constraint firstItem="okF-9L-rJ8" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" constant="2" id="9st-cK-qce"/>
+                                    <constraint firstAttribute="trailing" secondItem="okF-9L-rJ8" secondAttribute="trailing" constant="2" id="NYx-KS-2t6"/>
+                                    <constraint firstItem="KaL-Je-xfh" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" id="Yv2-rc-HOb"/>
+                                    <constraint firstAttribute="trailing" secondItem="KaL-Je-xfh" secondAttribute="trailing" id="j6J-bB-H2O"/>
+                                    <constraint firstAttribute="bottom" secondItem="KaL-Je-xfh" secondAttribute="bottom" id="ohH-f6-wr5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="removeButton" destination="okF-9L-rJ8" id="m7k-Zw-fJD"/>
+                                    <outlet property="selectButton" destination="KaL-Je-xfh" id="f02-Ga-vfS"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="JJY-wK-A2R" id="elo-b5-M6A"/>
+                            <outlet property="delegate" destination="JJY-wK-A2R" id="dad-q9-2oC"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yUG-M3-JOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="221"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="compose_photo_close" width="24" height="24"/>
+        <image name="compose_pic_add" width="70" height="70"/>
+    </resources>
+</document>

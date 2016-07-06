@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gBh-Kl-b5P" customClass="BottomView" customModule="LSYWeiBo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69j-Mf-dcR">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="转发" image="timeline_icon_retweet" backgroundImage="timeline_card_bottom_background">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="timeline_card_middle_background_highlighted"/>
+                </button>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAH-GM-E4t">
+                    <rect key="frame" x="125" y="0.0" width="125" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="赞" image="timeline_icon_unlike" backgroundImage="timeline_card_bottom_background">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="timeline_card_middle_background_highlighted"/>
+                </button>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2A-0g-Bce">
+                    <rect key="frame" x="250" y="0.0" width="125" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="评论" image="timeline_icon_comment" backgroundImage="timeline_card_bottom_background">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="timeline_card_middle_background_highlighted"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="P2A-0g-Bce" secondAttribute="trailing" id="4KM-vf-SUJ"/>
+                <constraint firstItem="P2A-0g-Bce" firstAttribute="leading" secondItem="oAH-GM-E4t" secondAttribute="trailing" id="5ax-fR-zNH"/>
+                <constraint firstItem="oAH-GM-E4t" firstAttribute="height" secondItem="69j-Mf-dcR" secondAttribute="height" id="8zD-cR-YkY"/>
+                <constraint firstItem="P2A-0g-Bce" firstAttribute="top" secondItem="gBh-Kl-b5P" secondAttribute="top" id="CNp-dx-a4V"/>
+                <constraint firstItem="69j-Mf-dcR" firstAttribute="top" secondItem="gBh-Kl-b5P" secondAttribute="top" id="NJt-wh-Ga6"/>
+                <constraint firstItem="oAH-GM-E4t" firstAttribute="leading" secondItem="69j-Mf-dcR" secondAttribute="trailing" id="QHk-v5-Clc"/>
+                <constraint firstAttribute="bottom" secondItem="69j-Mf-dcR" secondAttribute="bottom" constant="10" id="S4V-xK-aUJ"/>
+                <constraint firstItem="P2A-0g-Bce" firstAttribute="leading" secondItem="oAH-GM-E4t" secondAttribute="trailing" id="eVn-3O-oXg"/>
+                <constraint firstItem="oAH-GM-E4t" firstAttribute="width" secondItem="69j-Mf-dcR" secondAttribute="width" id="lvJ-jI-MD6"/>
+                <constraint firstItem="oAH-GM-E4t" firstAttribute="leading" secondItem="69j-Mf-dcR" secondAttribute="trailing" id="p4D-4b-68X"/>
+                <constraint firstItem="P2A-0g-Bce" firstAttribute="height" secondItem="69j-Mf-dcR" secondAttribute="height" id="p9k-bW-3Qz"/>
+                <constraint firstItem="oAH-GM-E4t" firstAttribute="top" secondItem="gBh-Kl-b5P" secondAttribute="top" id="rK3-Ov-87m"/>
+                <constraint firstItem="P2A-0g-Bce" firstAttribute="width" secondItem="69j-Mf-dcR" secondAttribute="width" id="vXo-H4-Rb7"/>
+                <constraint firstItem="69j-Mf-dcR" firstAttribute="leading" secondItem="gBh-Kl-b5P" secondAttribute="leading" id="xYL-jn-JJl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="attitudes_count" destination="oAH-GM-E4t" id="DsY-G8-HU1"/>
+                <outlet property="comments_count" destination="P2A-0g-Bce" id="0bF-eT-nRV"/>
+                <outlet property="reposts_count" destination="69j-Mf-dcR" id="oa9-oP-Ogg"/>
+            </connections>
+            <point key="canvasLocation" x="274.5" y="210"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="timeline_card_bottom_background" width="22" height="36"/>
+        <image name="timeline_card_middle_background_highlighted" width="13" height="13"/>
+        <image name="timeline_icon_comment" width="18" height="18"/>
+        <image name="timeline_icon_retweet" width="18" height="18"/>
+        <image name="timeline_icon_unlike" width="18" height="18"/>
+    </resources>
+</document>

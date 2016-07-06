@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rfO-q5-Xhy">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Welcome View Controller-->
+        <scene sceneID="H3K-vq-Dck">
+            <objects>
+                <viewController id="rfO-q5-Xhy" customClass="WelcomeViewController" customModule="LSYWeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H9t-c2-c7d"/>
+                        <viewControllerLayoutGuide type="bottom" id="0lh-sR-Nrt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vtg-hd-gfb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="81N-1V-pch">
+                                <rect key="frame" x="260" y="260" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="ec4-V4-x2K"/>
+                                    <constraint firstAttribute="width" constant="80" id="m3b-fl-9ev"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="0.01"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎回来" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-63-opm">
+                                <rect key="frame" x="266" y="360" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="81N-1V-pch" firstAttribute="centerX" secondItem="vtg-hd-gfb" secondAttribute="centerX" id="AXa-Bw-cCg"/>
+                            <constraint firstItem="JlB-63-opm" firstAttribute="centerX" secondItem="81N-1V-pch" secondAttribute="centerX" id="S2E-mC-Gh8"/>
+                            <constraint firstItem="0lh-sR-Nrt" firstAttribute="top" secondItem="81N-1V-pch" secondAttribute="bottom" constant="260" id="dXJ-Tq-9qf"/>
+                            <constraint firstItem="JlB-63-opm" firstAttribute="top" secondItem="81N-1V-pch" secondAttribute="bottom" constant="20" id="mEk-kc-rZS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="iconCon" destination="dXJ-Tq-9qf" id="aoR-W6-wlg"/>
+                        <outlet property="userIcon" destination="81N-1V-pch" id="lFQ-Xh-uNr"/>
+                        <outlet property="userName" destination="JlB-63-opm" id="U4X-Pr-SjP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHi-Um-LrF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="280" y="342"/>
+        </scene>
+    </scenes>
+</document>

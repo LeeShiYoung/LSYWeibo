@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WUE-8Y-wme">
+            <rect key="frame" x="0.0" y="0.0" width="102" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal" image="tabbar_compose_icon_add" backgroundImage="tabbar_compose_button"/>
+            <state key="highlighted" image="tabbar_compose_icon_add_highlighted" backgroundImage="tabbar_compose_button_highlighted"/>
+            <point key="canvasLocation" x="264" y="272"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="tabbar_compose_button" width="64" height="44"/>
+        <image name="tabbar_compose_button_highlighted" width="64" height="44"/>
+        <image name="tabbar_compose_icon_add" width="25" height="25"/>
+        <image name="tabbar_compose_icon_add_highlighted" width="25" height="25"/>
+    </resources>
+</document>

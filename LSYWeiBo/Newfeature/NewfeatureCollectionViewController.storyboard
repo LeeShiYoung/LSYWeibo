@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Izp-2d-ruK">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Newfeature Collection View Controller-->
+        <scene sceneID="aV7-bb-4Cy">
+            <objects>
+                <collectionViewController id="Izp-2d-ruK" customClass="NewfeatureCollectionViewController" customModule="LSYWeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="gAQ-Of-P5D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5KL-g8-FB2" customClass="NewfeatureFlowLayout" customModule="LSYWeiBo" customModuleProvider="target">
+                            <size key="itemSize" width="501" height="580"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewfeatureCollectionViewCell" id="rv8-fX-HRD" customClass="NewfeatureCollectionViewCell" customModule="LSYWeiBo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YfO-EO-FFL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKJ-Kz-CEN">
+                                            <rect key="frame" x="207" y="398" width="186" height="42"/>
+                                            <state key="normal" backgroundImage="new_feature_button"/>
+                                            <state key="highlighted" backgroundImage="new_feature_button_highlighted"/>
+                                            <connections>
+                                                <action selector="startButtonClick:" destination="rv8-fX-HRD" eventType="touchUpInside" id="fRo-lL-TC7"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YfO-EO-FFL" secondAttribute="trailing" id="CWT-iL-uZG"/>
+                                    <constraint firstAttribute="bottom" secondItem="YfO-EO-FFL" secondAttribute="bottom" id="UvY-Ci-Kip"/>
+                                    <constraint firstItem="YfO-EO-FFL" firstAttribute="leading" secondItem="rv8-fX-HRD" secondAttribute="leading" id="bqK-QZ-8lh"/>
+                                    <constraint firstItem="YfO-EO-FFL" firstAttribute="top" secondItem="rv8-fX-HRD" secondAttribute="top" id="pvw-6B-Sa0"/>
+                                    <constraint firstAttribute="bottom" secondItem="GKJ-Kz-CEN" secondAttribute="bottom" constant="160" id="swK-td-YSv"/>
+                                    <constraint firstItem="GKJ-Kz-CEN" firstAttribute="centerX" secondItem="rv8-fX-HRD" secondAttribute="centerX" id="vqx-Ly-SiL"/>
+                                </constraints>
+                                <size key="customSize" width="600" height="600"/>
+                                <connections>
+                                    <outlet property="imageView" destination="YfO-EO-FFL" id="Ulx-Qn-2EV"/>
+                                    <outlet property="startButton" destination="GKJ-Kz-CEN" id="UfR-6S-lTo"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="bounces" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="dataSource" destination="Izp-2d-ruK" id="Gwn-2M-a9U"/>
+                            <outlet property="delegate" destination="Izp-2d-ruK" id="Xbu-A3-dRm"/>
+                        </connections>
+                    </collectionView>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="layout" destination="5KL-g8-FB2" id="xG5-WZ-Max"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytb-xH-Fwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="720" y="367"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="new_feature_button" width="186" height="42"/>
+        <image name="new_feature_button_highlighted" width="186" height="42"/>
+    </resources>
+</document>

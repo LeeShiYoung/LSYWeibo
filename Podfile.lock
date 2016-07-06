@@ -1,0 +1,53 @@
+PODS:
+  - Alamofire (3.4.0)
+  - ALCameraViewController (1.2.0)
+  - CameraManager (2.2.2)
+  - FDFullscreenPopGesture (1.1)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - HYLabel (1.0.2)
+  - JASON (2.2)
+  - MJExtension (3.0.7)
+  - MJRefresh (3.1.0)
+  - ReachabilitySwift (2.3.3)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SnapKit (0.20.0)
+  - SVProgressHUD (2.0.3)
+  - SwiftQRCode (2.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - ALCameraViewController (~> 1.2.0)
+  - CameraManager (~> 2.2)
+  - FDFullscreenPopGesture (= 1.1)
+  - FMDB
+  - HYLabel
+  - JASON (~> 2.2)
+  - MJExtension
+  - MJRefresh
+  - ReachabilitySwift
+  - SDWebImage
+  - SnapKit
+  - SVProgressHUD
+  - SwiftQRCode
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  ALCameraViewController: 03b480d0b41d3afc21fca48fc45345893ce2680a
+  CameraManager: 1b1e1498d30107cb66c5894cdb7917516d7dd072
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HYLabel: a1294c88a57fa0c71651e167a6cf2ffcf1de9c28
+  JASON: 0daa2c3ed902ccbfa94d6bb4cb356d252b9607ce
+  MJExtension: 290cc966f0f849b12b6391a38e296e0004ae8e5e
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
+
+COCOAPODS: 0.39.0
