@@ -72,6 +72,9 @@ extension OAuthViewController:  UIWebViewDelegate
                         
                         // 进入主界面
                         NSNotificationCenter.defaultCenter().postNotificationName(AppdelegateNotifiKey, object: true)
+                    } else {
+                        SVProgressHUD.showError("登录发生错误, 请重试")
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 })
             })
@@ -81,10 +84,12 @@ extension OAuthViewController:  UIWebViewDelegate
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        print("加载完成")
         SVProgressHUD.dismiss()
     }
     
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        SVProgressHUD.dismiss()
+    }
     //获取 access_token
     private func obtainAccess_token(requestToken: String, response:(accessToken: [String: AnyObject]) -> ()) {
         
