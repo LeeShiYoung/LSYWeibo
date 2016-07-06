@@ -78,6 +78,13 @@ class WebViewController: UIViewController {
         }
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let pro = progress {
+            pro.hidden = true
+        }
+    }
     // webView
     private lazy var webView: WKWebView = {
         let web = WKWebView()

@@ -125,8 +125,6 @@ class HomeTableViewCell: UITableViewCell {
     @objc private func bckBtnDidClick(btn: UIButton) {
         delegate?.forwardBtnClic(btn)
     }
-    
-    
 }
 
 

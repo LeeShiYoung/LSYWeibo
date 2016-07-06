@@ -99,4 +99,11 @@ extension OAuthViewController:  UIWebViewDelegate
             print("授权失败")
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if SVProgressHUD.isVisible() {
+            SVProgressHUD.dismiss()
+        }
+    }
 }

@@ -60,12 +60,6 @@ class HomeTableViewController: BaseTableViewController {
 
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-    }
-    
     // 记录当前刷新类别 ( 默认下拉)
     var currentRefresh = true
     

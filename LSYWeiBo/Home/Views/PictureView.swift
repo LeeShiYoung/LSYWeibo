@@ -9,7 +9,6 @@
 import UIKit
 import SDWebImage
 
-
 class PictureView: UICollectionView {
     
     let PictureReuseIdentifier = "PictureReuseIdentifier"
@@ -31,7 +30,6 @@ class PictureView: UICollectionView {
         super.init(frame: CGRectZero, collectionViewLayout: pictureLayout)
         
         // 注册 cell
-    
         registerNib(UINib(nibName: "PictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PictureReuseIdentifier)
         dataSource = self
         delegate = self
