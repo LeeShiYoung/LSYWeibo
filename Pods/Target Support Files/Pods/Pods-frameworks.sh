@@ -90,7 +90,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/FDFullscreenPopGesture.framework"
   install_framework "Pods/FMDB.framework"
   install_framework "Pods/HYLabel.framework"
-  install_framework "Pods/JASON.framework"
   install_framework "Pods/MJRefresh.framework"
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/ReachabilitySwift.framework"
@@ -98,6 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/SnapKit.framework"
   install_framework "Pods/SwiftQRCode.framework"
+  install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ALCameraViewController.framework"
@@ -106,7 +106,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/FDFullscreenPopGesture.framework"
   install_framework "Pods/FMDB.framework"
   install_framework "Pods/HYLabel.framework"
-  install_framework "Pods/JASON.framework"
   install_framework "Pods/MJRefresh.framework"
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/ReachabilitySwift.framework"
@@ -114,4 +113,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SVProgressHUD.framework"
   install_framework "Pods/SnapKit.framework"
   install_framework "Pods/SwiftQRCode.framework"
+  install_framework "Pods/SwiftyJSON.framework"
 fi

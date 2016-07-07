@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import JASON
+import SwiftyJSON
 
 let baseURL = "https://api.weibo.com/"
 class NetWorkTools: NSObject {
@@ -20,13 +20,15 @@ class NetWorkTools: NSObject {
         Alamofire.request(.GET, urlStr, parameters: parameters)
             .response { request, response, data, error in
                 
-                if let dicM = JSON(data).dictionary {
-                    
-                    success(result: dicM)
+                let json = JSON(data: data!).dictionaryObject
+                if let json = json {
+                    success(result: json)
                 } else {
+                    
                     
                     filed(error: error)
                 }
+
         }
     }
     
@@ -37,13 +39,13 @@ class NetWorkTools: NSObject {
         Alamofire.request(.POST, urlStr, parameters: parameters)
             .response { request, response, data, error in
                 
-                if let dicM = JSON(data).dictionary {
-                    
-                    success(result: dicM)
+                let json = JSON(data: data!).dictionaryObject
+                if let json = json {
+                    success(result: json)
                 } else {
-                    
                     filed(error: error)
                 }
+
         }
     }
     

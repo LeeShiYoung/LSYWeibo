@@ -7,7 +7,6 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - HYLabel (1.0.2)
-  - JASON (2.2)
   - MJRefresh (3.1.0)
   - ObjectMapper (1.3.0)
   - ReachabilitySwift (2.3.3)
@@ -17,6 +16,7 @@ PODS:
   - SnapKit (0.20.0)
   - SVProgressHUD (2.0.3)
   - SwiftQRCode (2.0.2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -25,7 +25,6 @@ DEPENDENCIES:
   - FDFullscreenPopGesture (= 1.1)
   - FMDB
   - HYLabel
-  - JASON (~> 2.2)
   - MJRefresh (~> 3.1.0)
   - ObjectMapper (~> 1.3.0)
   - ReachabilitySwift
@@ -33,6 +32,7 @@ DEPENDENCIES:
   - SnapKit
   - SVProgressHUD
   - SwiftQRCode
+  - SwiftyJSON (~> 2.3.2)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
@@ -41,7 +41,6 @@ SPEC CHECKSUMS:
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   HYLabel: a1294c88a57fa0c71651e167a6cf2ffcf1de9c28
-  JASON: 0daa2c3ed902ccbfa94d6bb4cb356d252b9607ce
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
@@ -49,5 +48,6 @@ SPEC CHECKSUMS:
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
