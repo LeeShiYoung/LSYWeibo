@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MJExtension
 
 class EmoticonPackage: NSObject {
     

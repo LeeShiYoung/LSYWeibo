@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '42DC4D725077C64EC396DFAE'
+               BlueprintIdentifier = '5BC8EA2CA86064BF07C9E8B5'
                BlueprintName = 'HYLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'HYLabel.framework'>

@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import ObjectMapper
 
 let client_id = "3092083192"
 let redirect_uri = "http://www.youmeishi.cn"
@@ -60,10 +61,10 @@ extension OAuthViewController:  UIWebViewDelegate
             obtainAccess_token(requestToken!, response: { (accessToken) in
                 
                 // 将带有 accessToken 的数据 存入模型
-                let account = UserAccount.mj_objectWithKeyValues(accessToken)
-                
+//                let account = UserAccount.mj_objectWithKeyValues(accessToken)
+                let account = Mapper<UserAccount>().map(accessToken)
                 //获取用户信息
-                account.loadUserInfo({ (error) in
+                account!.loadUserInfo({ (error) in
                     
                     if error == nil{
                         

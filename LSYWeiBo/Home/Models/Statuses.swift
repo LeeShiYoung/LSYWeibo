@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import MJExtension
 import SDWebImage
+import ObjectMapper
 
 enum CacheType {
     case netPicSize // 从网络获取图片尺寸
     case dirPicSize // 从本地获取图片尺寸
 }
 
-class Statuses: NSObject {
+class Statuses: Mappable {
     // 微博创建时间
      var created_at: String?{
         
@@ -113,9 +113,6 @@ class Statuses: NSObject {
         // 读取缓存数据
         StatusesDB.readStatus(since, max: max) { (statuses, error) in
        
-            if error != nil {
-                field(error: nil)
-            }
             if statuses.count != 0 {// 有缓存
                 
                 downLoadCachePictures(statuses, statuses: datas)
@@ -130,13 +127,17 @@ class Statuses: NSObject {
         parameters["max_id"] = max
         
         NetWorkTools.GET_Request("2/statuses/home_timeline.json", parameters: parameters, success: { (result) in
-            
-            let modelArr = Statuses.mj_objectArrayWithKeyValuesArray(result["statuses"]) as [AnyObject]
-            
+  
+            let modelArr = Mapper<Statuses>().mapArray(result["statuses"])
+            if let modelArr = modelArr {
             // 缓存数据
-            StatusesDB.seveStatus(modelArr as! [Statuses])
-            // 获取图片尺寸
-            downLoadCachePictures(modelArr as! [Statuses], statuses: datas)
+                StatusesDB.seveStatus(modelArr)
+                // 获取图片尺寸
+                downLoadCachePictures(modelArr, statuses: datas)
+            } else {
+                
+                field(error: nil)
+            }
             
         }) { (error) in
             
@@ -196,28 +197,25 @@ class Statuses: NSObject {
             statuses(statuses: statues)
         }
     }
-  
-    // 归档
-    func encodeWithCoder(aCoder: NSCoder)
-    {
-        mj_encode(aCoder)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init()
-        mj_decode(aDecoder)
-    }
 
-    override init() {
-        super.init()
+    /***********ObjectMapper****************/
+    
+    required init?(_ map: Map) {
         
     }
     
-    // 创建 "上次读到这里" 模型
-    static let record = Statuses()
-    class func recordInstance() -> [Statuses] {
+    func mapping(map: Map) {
         
-        record.recordLine = true
-        return [record]
+        created_at <- map["created_at"]
+        id <- map["id"]
+        text <- map["text"]
+        source <- map["source"]
+        retweeted_status <- map["retweeted_status"]
+        user <- map["user"]
+        reposts_count <- map["reposts_count"]
+        comments_count <- map["comments_count"]
+        attitudes_count <- map["attitudes_count"]
+        pic_urls <- map["pic_urls"]
     }
+    
 }

@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import MJExtension
+import ObjectMapper
 
-class Users: NSObject {
+class Users: Mappable {
 
     // 用户ID
     var id: Int = 0
@@ -63,19 +63,16 @@ class Users: NSObject {
     // 会员名 高亮
     var mbrank_Color = UIColor.blackColor()
     
-    // 归档
-    func encodeWithCoder(aCoder: NSCoder)
-    {
-        mj_encode(aCoder)
+    required init?(_ map: Map) {
+        
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init()
-        mj_decode(aDecoder)
+    func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        profile_image_url <- map["profile_image_url"]
+        verified <- map["verified"]
+        verified_type <- map["verified_type"]
+        mbrank <- map["mbrank"]
     }
-    
-    override init() {
-        super.init()
-    }
-
 }

@@ -59,7 +59,7 @@
     [super placeSubviews];
     
     // 箭头的中心点
-    CGFloat arrowCenterX = self.mj_w * 0.6;
+    CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
         arrowCenterX -= 100;
     }

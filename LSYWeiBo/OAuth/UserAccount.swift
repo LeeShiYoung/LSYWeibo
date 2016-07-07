@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import MJExtension
+import ObjectMapper
 
 let userAccess = "userAccess"
 
-class UserAccount: NSObject, NSCoding {
+class UserAccount: Mappable {
     
     /// 用于调用access_token，接口获取授权后的access token。
     var access_token: String?
@@ -57,7 +57,8 @@ class UserAccount: NSObject, NSCoding {
             return account!
         }
         
-        account = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? UserAccount
+        let accountJson = NSKeyedUnarchiver.unarchiveObjectWithFile(path)
+        account = Mapper<UserAccount>().map(accountJson)
         
         if account?.expires_Date?.compare(NSDate()) == NSComparisonResult.OrderedAscending
         {
@@ -79,28 +80,21 @@ class UserAccount: NSObject, NSCoding {
     func save()
     {
         print(UserAccount.path)
-        NSKeyedArchiver.archiveRootObject(self, toFile: UserAccount.path)
+        let accountJson = self.toJSON()
+        NSKeyedArchiver.archiveRootObject(accountJson, toFile: UserAccount.path)
     }
     
-   
-    
-    func encodeWithCoder(aCoder: NSCoder)
-    {
-        mj_encode(aCoder)
-
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
- 
-        super.init()
-        mj_decode(aDecoder)
-    }
-    
-    override init() {
-        super.init()
+    required init?(_ map: Map) {
         
     }
-
     
+    func mapping(map: Map) {
+        access_token <- map["access_token"]
+        expires_in <- map["expires_in"]
+        uid <- map["uid"]
+        expires_Date <- map["expires_Date"]
+        avatar_large <- map["avatar_large"]
+        screen_name <- map["screen_name"]
+    } 
 }
 

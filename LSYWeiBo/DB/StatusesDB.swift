@@ -8,6 +8,7 @@
 
 import UIKit
 import FMDB
+import ObjectMapper
 
 class StatusesDB: NSObject {
     
@@ -33,13 +34,14 @@ class StatusesDB: NSObject {
         }
         
         // 忽略属性
-        Statuses.mj_setupIgnoredCodingPropertyNames { () -> [AnyObject]! in
-            return ["statePic_URLs", "stateOriginal_URLs"]
-        }
+//        Statuses.mj_setupIgnoredCodingPropertyNames { () -> [AnyObject]! in
+//            return ["statePic_URLs", "stateOriginal_URLs"]
+//        }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             for status in stats {
                 
-                let data = NSKeyedArchiver.archivedDataWithRootObject(status)
+                let statusJson = status.toJSON()
+                let data = NSKeyedArchiver.archivedDataWithRootObject(statusJson)
                 queue?.inTransaction({ (db, back) in
                     do {
                         try db.executeUpdate("INSERT OR REPLACE INTO t_status (status, statusesID) VALUES (?,?)", values: [data, status.id])
@@ -73,8 +75,11 @@ class StatusesDB: NSObject {
                     while result.next() {
                         
                         let data = result.dataForColumn("status")
-                        let status = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Statuses
-                        statuses.append(status)
+                        let statusJson = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+                        let status = Mapper<Statuses>().map(statusJson)
+                        if let status = status {
+                            statuses.append(status)
+                        }
                     }
                     finsih(statuses: statuses, error: nil)
                 } catch {

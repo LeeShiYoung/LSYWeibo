@@ -8,8 +8,8 @@ PODS:
   - FMDB/standard (2.6.2)
   - HYLabel (1.0.2)
   - JASON (2.2)
-  - MJExtension (3.0.7)
   - MJRefresh (3.1.0)
+  - ObjectMapper (1.3.0)
   - ReachabilitySwift (2.3.3)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -26,8 +26,8 @@ DEPENDENCIES:
   - FMDB
   - HYLabel
   - JASON (~> 2.2)
-  - MJExtension
-  - MJRefresh
+  - MJRefresh (~> 3.1.0)
+  - ObjectMapper (~> 1.3.0)
   - ReachabilitySwift
   - SDWebImage
   - SnapKit
@@ -42,8 +42,8 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   HYLabel: a1294c88a57fa0c71651e167a6cf2ffcf1de9c28
   JASON: 0daa2c3ed902ccbfa94d6bb4cb356d252b9607ce
-  MJExtension: 290cc966f0f849b12b6391a38e296e0004ae8e5e
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
