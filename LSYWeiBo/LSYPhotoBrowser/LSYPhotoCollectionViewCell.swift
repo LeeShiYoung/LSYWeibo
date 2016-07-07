@@ -105,6 +105,10 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    deinit {
+        
+        print("死")
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

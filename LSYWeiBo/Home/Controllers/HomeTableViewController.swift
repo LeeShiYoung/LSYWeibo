@@ -18,7 +18,7 @@ let HomePhotoBrowerNotiKey = "HomePhotoBrowerNotiKey"
 let UpdateStatuesNotiKey = "UpdateStatuesNotiKey"
 let instantiateVC = "instantiateVC"
 class HomeTableViewController: BaseTableViewController {
-    
+   
     var dataSource: [Statuses]? {
         didSet{
             // 刷新微博数据
@@ -81,7 +81,7 @@ class HomeTableViewController: BaseTableViewController {
         }
         
         Statuses.loadStatuses(since_id, max: max_id, datas: { (statuses) in
-            
+      
             if SVProgressHUD.isVisible() {
                 SVProgressHUD.dismiss()
             }
@@ -115,6 +115,7 @@ class HomeTableViewController: BaseTableViewController {
     
         visitorView?.setupVisitorInfo(true, iconStr: "visitordiscover_feed_image_house", text: "关注一些人，回这里看看有什么惊喜")
     }
+    
     
     //MARK: - 设置导航栏
     private func setUpNavi() {
@@ -209,11 +210,7 @@ class HomeTableViewController: BaseTableViewController {
         return footer
     }()
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBarHidden = false
-    }
+    
     deinit
     {
         Reachability.stopNotifier()
