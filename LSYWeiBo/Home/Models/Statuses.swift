@@ -1,4 +1,4 @@
-//
+ //
 //  Statuses.swift
 //  LSYWeiBo
 //
@@ -104,8 +104,8 @@ class Statuses: Mappable {
     // 表态数
      var attitudes_count: Int = 0
     
-    // 上次读到这里
-    var recordLine = false
+    // text 图文混排的 字符串
+    var attributedString: NSAttributedString?
     
     // 获取 微博 数据
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
@@ -156,6 +156,16 @@ class Statuses: Mappable {
         
         let group = dispatch_group_create()
         for stat in statues {
+            // 原创微博内容(图文)
+            if let statText = stat.text {
+                stat.attributedString = EmoticonPackage.emoticonAttributedString(statText)
+            }
+            // 转发微博内容(图文)
+            if let retweerStat = stat.retweeted_status {
+                let name = retweerStat.user?.name ?? ""
+                let text = retweerStat.text ?? ""
+                retweerStat.attributedString = EmoticonPackage.emoticonAttributedString("@" + name + ": " + text)
+            }
             
             guard let _ = stat.pic_URLs else {
                 // 进入下一循环
@@ -177,10 +187,14 @@ class Statuses: Mappable {
                 // 从网络获取图片尺寸
                 let netClourse = {
                     (url: NSURL) -> Void in
-                    ImageScout.scoutManager.scoutImageWithURL(url, completion: { (error, size, type) in
+                    /*ImageScout.scoutManager.scoutImageWithURL(url, completion: { (error, size, type) in
                         
                         stat.cachePic_size = size
                         stat.pic_type = type.rawValue
+                        dispatch_group_leave(group)
+                    })*/
+                    SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, _) in
+                        stat.cachePic_size = image.size
                         dispatch_group_leave(group)
                     })
                 }

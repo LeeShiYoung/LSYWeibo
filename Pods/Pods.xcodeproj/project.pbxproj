@@ -170,6 +170,7 @@
 		C93CFFC61D2E4298005AEB38 /* CameraManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF89DA00379A3B055D56F0CA27E584D0 /* CameraManager.framework */; };
 		C93CFFC71D2E429E005AEB38 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C927DCDDA46F17108E0314C54E9F2A03 /* SnapKit.framework */; };
 		C9497D947A0E66DB13242885B53F6946 /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C69106AFFD9AFD84BFDC585888F985 /* MJRefreshBackGifFooter.m */; };
+		C96967BF1D34D895006FBA77 /* ConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C96967BE1D34D895006FBA77 /* ConfirmViewController.xib */; };
 		CBE8F700B9AF0D0CD6EFFBFAE8FC46FB /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F2D9A3E58BCE5EB6D7A8BF27FBC587 /* SVProgressHUD.m */; };
 		CD7C637B27F6C111243E75F72AA13E89 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6ED8C568695A6A1D3437DD0F1C9484C3 /* SVProgressHUD.bundle */; };
 		CF8456F107FFCD2C20298F63CD23216F /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D5D78066FAB42A430D96793860F98C /* UIScrollView+MJExtension.m */; };
@@ -543,6 +544,7 @@
 		C6DA750A161AB65FCEC7BC044652038B /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
 		C7391AE5ABB1EACE1E66132FC09FB621 /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackStateFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		C927DCDDA46F17108E0314C54E9F2A03 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C96967BE1D34D895006FBA77 /* ConfirmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmViewController.xib; sourceTree = "<group>"; };
 		C98579F3B6240956225AC5484F8EED4B /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FFD4027BF4A6DF86DFB43F70D719AC /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
 		CA778D166BCBE0BB3CFF15ADD7173F13 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
@@ -1012,6 +1014,7 @@
 		5FAB28F86EF64B92F1EBA09B62F97A4B /* ALCameraViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C96967BE1D34D895006FBA77 /* ConfirmViewController.xib */,
 				43AAB86C443D575279D1DCB41A232F9A /* CameraCollectionViewCell.swift */,
 				A9FFAFA430E50D17144D7BF2CD3C9105 /* CameraGlobals.swift */,
 				8E857C426AA6D50170A43D4A9B087E72 /* CameraManagerViewController.swift */,
@@ -1843,6 +1846,7 @@
 			files = (
 				FCC62E86E0C8B59B37C81EFC07C79991 /* CameraView.strings in Resources */,
 				174D4AECFF80E426053452DCC6BA4B9D /* CameraViewAssets.xcassets in Resources */,
+				C96967BF1D34D895006FBA77 /* ConfirmViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

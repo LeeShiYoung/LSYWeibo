@@ -60,7 +60,7 @@ public class HYLabel: UILabel {
     // 保存被替换的字符串
     var links = [String]()
     // 网页链接文本
-    var linkAttriStr: NSMutableAttributedString?
+    var linkAttriStr: NSMutableAttributedString? 
     
     // 懒加载属性
     private lazy var textStorage : NSTextStorage = NSTextStorage() // NSMutableAttributeString的子类
@@ -107,7 +107,30 @@ public class HYLabel: UILabel {
         textContainer.size = frame.size
     }
     
+    static let linkAttributed: NSMutableAttributedString = {
+        let str = "&T网页链接&"
+        let attributImage = NSTextAttachment()
+        attributImage.image = UIImage(named: "insert_link")
+        attributImage.bounds = CGRect(x: 0, y: -2, width: 17, height: 17)
+        
+        let linkAttriS = NSMutableAttributedString(string: str)
+        
+        linkAttriS.replaceCharactersInRange(NSRange(location: 1, length: 1), withAttributedString: NSAttributedString(attachment: attributImage))
+        
+        linkAttriS.addAttributes([NSForegroundColorAttributeName: UIColor(red: 44 / 255.0, green: 103 / 255.0, blue: 161 / 255.0, alpha: 1.0), NSFontAttributeName: 17], range: NSRange(location: 0, length: linkAttriS.length))
+        linkAttriS.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: 17], range: NSRange(location: 0, length: 1))
+        linkAttriS.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: 17], range: NSRange(location: linkAttriS.length-1, length: 1))
+        return linkAttriS
+        
+    }()
+    
+    
+    class func linkAttributerManger() -> NSMutableAttributedString {
+        return linkAttributed
+    }
+    
     private func linkAttributedStr() {
+    
         let str = "&T网页链接&"
         let attributImage = NSTextAttachment()
         attributImage.image = UIImage(named: "insert_link")
@@ -116,10 +139,11 @@ public class HYLabel: UILabel {
         linkAttriStr = NSMutableAttributedString(string: str)
         
         linkAttriStr!.replaceCharactersInRange(NSRange(location: 1, length: 1), withAttributedString: NSAttributedString(attachment: attributImage))
-        linkAttriStr?.addAttributes([NSForegroundColorAttributeName: matchTextColor, NSFontAttributeName: font], range: NSRange(location: 0, length: linkAttriStr!.length))
-        linkAttriStr?.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: font], range: NSRange(location: 0, length: 1))
-        linkAttriStr?.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: font], range: NSRange(location: linkAttriStr!.length-1, length: 1))
-        
+       
+        linkAttriStr!.addAttributes([NSForegroundColorAttributeName: matchTextColor, NSFontAttributeName: font], range: NSRange(location: 0, length: linkAttriStr!.length))
+        linkAttriStr!.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: font], range: NSRange(location: 0, length: 1))
+        linkAttriStr!.addAttributes([NSForegroundColorAttributeName: UIColor.clearColor(), NSFontAttributeName: font], range: NSRange(location: linkAttriStr!.length-1, length: 1))
+       
     }
     
     // MARK:- 重写drawTextInRect方法
@@ -144,6 +168,7 @@ public class HYLabel: UILabel {
 }
 
 extension HYLabel {
+    
     /// 准备文本系统
     private func prepareTextSystem() {
         // 0.准备文本
@@ -215,6 +240,7 @@ extension HYLabel {
         }
         
         // 5.匹配@用户
+        
         if let userRanges = getRanges("@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*") {
             self.userRanges = userRanges
             for range in userRanges {
@@ -223,7 +249,7 @@ extension HYLabel {
         }
         
         // 6.匹配话题##
-        if let topicRanges = getRanges("#.*?#") {
+        if let topicRanges = getRanges("#[^@#]+?#") {
             self.topicRanges = topicRanges
             for range in topicRanges {
                 textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)

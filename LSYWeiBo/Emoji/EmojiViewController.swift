@@ -24,6 +24,7 @@ class EmojiViewController: UIViewController {
     @IBAction func send(sender: UIBarButtonItem) {
         
         NetWorkTools.sendStatues(pictureSelector.pictures!, status: textView.emojiAttributedString(), success: {
+           
             // 通知刷新
             NSNotificationCenter.defaultCenter().postNotificationName(UpdateStatuesNotiKey, object: nil)
             self.dismissViewControllerAnimated(true, completion: nil)

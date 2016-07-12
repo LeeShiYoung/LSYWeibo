@@ -37,6 +37,7 @@ public class ImageScout {
   /// - parameter URL: The URL of the image.
   /// - parameter completion: The completion block to call once the scout operation is complete.
   public func scoutImageWithURL(URL: NSURL, completion: ScoutCompletionBlock) {
+    print("---\(URL)")
     let operation = ScoutOperation(task: session.dataTaskWithURL(URL))
     operation.completionBlock = { [unowned self] in
       completion(operation.error, operation.size, operation.type)

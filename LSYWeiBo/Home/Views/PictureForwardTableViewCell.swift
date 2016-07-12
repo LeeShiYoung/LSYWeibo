@@ -12,11 +12,10 @@ class PictureForwardTableViewCell: HomeTableViewCell {
     
     override var statues: Statuses?{
         didSet{
-            
-            let name = statues?.retweeted_status?.user?.name ?? ""
-            let text = statues?.retweeted_status?.text ?? ""
-            forwardContent.attributedText = EmoticonPackage.emoticonAttributedString("@" + name + ": " + text)
-            pictureView.reloadData()
+            forwardContent.attributedText = statues?.retweeted_status?.attributedString
+//            let name = statues?.retweeted_status?.user?.name ?? ""
+//            let text = statues?.retweeted_status?.text ?? ""
+//            forwardContent.attributedText = EmoticonPackage.emoticonAttributedString("@" + name + ": " + text)
         }
     }
     

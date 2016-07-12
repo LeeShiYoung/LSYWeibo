@@ -18,9 +18,7 @@ enum CellReuseIdentifier: String {
     
     // 获取 cell 重用标示
     static func cellID(statues: Statuses) -> String {
-        if statues.recordLine == true {
-            return CellReuseIdentifier.line.rawValue
-        }
+       
        return statues.retweeted_status != nil ? CellReuseIdentifier.forward.rawValue : CellReuseIdentifier.original.rawValue
     }
 }

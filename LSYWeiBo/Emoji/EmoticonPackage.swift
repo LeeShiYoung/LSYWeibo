@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HYLabel
 
 class EmoticonPackage: NSObject {
     
@@ -61,8 +62,7 @@ class EmoticonPackage: NSObject {
         }
         return emoti
     }
-    
-    
+  
     private class func loadEmoticonsPackage() -> [EmoticonPackage] {
   
         let path = NSBundle.mainBundle().pathForResource("emoticons.plist", ofType: nil, inDirectory: "Emoticons.bundle")!
@@ -228,5 +228,45 @@ class Emoticon: NSObject {
     
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
+    }
+}
+
+private let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+extension HYLabel {
+    func hy_emoticonAttributedString(text: String, callBack:() -> ()) {
+        dispatch_async(queue) { 
+            do {
+               
+                let attStr = NSMutableAttributedString(string: text)
+                let pattern = "\\[.*?\\]"
+                let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
+                
+                let result = regex.matchesInString(text, options: NSMatchingOptions(rawValue: 0), range: NSRange(0..<text.characters.count))
+                var count = result.count
+                
+                while count > 0 {
+                    
+                    count -= 1
+                    let checkingResult = result[count]
+                    let tempStr = (text as NSString).substringWithRange(checkingResult.range)
+                    if let emtion = EmoticonPackage.searchEmotions(tempStr) {
+                        
+                        let attributedStr = EmojiTextAttachment.emojiAttachment(emtion, font: UIFont.systemFontOfSize(17))
+                        attStr.replaceCharactersInRange(checkingResult.range, withAttributedString: attributedStr)
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.attributedText = attStr
+                    callBack()
+                })
+                
+            } catch {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.attributedText = nil
+                    callBack()
+                })
+            }
+
+        }
     }
 }
