@@ -138,8 +138,6 @@ extension PictureView: UICollectionViewDataSource, UICollectionViewDelegate
     }
 }
 
-
-
 // MARK: - UICollectionViewCell
 class PictureCollectionViewCell: UICollectionViewCell {
  

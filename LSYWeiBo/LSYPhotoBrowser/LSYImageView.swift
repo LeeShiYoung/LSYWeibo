@@ -10,8 +10,8 @@ import UIKit
 
 protocol LSYImageViewDelegate: NSObjectProtocol {
 
-    func tapDisMiss()
-    func handleImageViewDoubleTap(view: UIImageView, touch: UITouch)
+    func handleImageDisMiss(ges: UITapGestureRecognizer)
+    func handleImageViewDoubleTap(ges: UITapGestureRecognizer)
 }
 
 class LSYImageView: UIImageView {
@@ -20,36 +20,37 @@ class LSYImageView: UIImageView {
     weak var lsyimageDelegate: LSYImageViewDelegate?
     init(){
         super.init(frame: CGRectZero)
-        
+   
         userInteractionEnabled = true
+        
+        // 添加手势
+       let doubleTapGesture = UITapGestureRecognizer(target: self, action: .doubleTap)
+        doubleTapGesture.numberOfTapsRequired = 2
+        doubleTapGesture.numberOfTouchesRequired = 1
+        
+       let singleTapGesture = UITapGestureRecognizer(target: self, action: .singleTap)
+        singleTapGesture.requireGestureRecognizerToFail(doubleTapGesture)
+        singleTapGesture.numberOfTapsRequired = 1
+        singleTapGesture.numberOfTouchesRequired = 1
+        addGestureRecognizer(doubleTapGesture)
+        addGestureRecognizer(singleTapGesture)
     }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
-        let touch = touches.first!
-        switch touch.tapCount {
-        case 1 : handleSingleTap()
-        case 2 : handleDoubleTap(touch)
-        default: break
-        }
-        nextResponder()
-    }
-    
-    func handleSingleTap() {
-        lsyimageDelegate!.tapDisMiss()
-    }
-    
-    func handleDoubleTap(touch: UITouch) {
-        lsyimageDelegate?.handleImageViewDoubleTap(self, touch: touch)
-//        if zoomScale > minimumZoomScale {
-//            // zoom out
-//            setZoomScale(minimumZoomScale, animated: true)
-//        } else {
-//            zoomToRect(zoomRectForScrollViewWith(maximumZoomScale, touchPoint: touchPoint), animated: true)
+  
 
+    func handleSingleTap(ges: UITapGestureRecognizer) {
+        lsyimageDelegate!.handleImageDisMiss(ges)
+    }
+    
+    func handleDoubleTap(ges: UITapGestureRecognizer) {
+        lsyimageDelegate?.handleImageViewDoubleTap(ges)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+private extension Selector {
+    static let singleTap = #selector(LSYImageView.handleSingleTap(_:))
+    static let doubleTap = #selector(LSYImageView.handleDoubleTap(_:))
 }

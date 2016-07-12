@@ -36,6 +36,9 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(scrollView)
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 1.5
         scrollView.addSubview(imageView)
         scrollView.frame = contentView.bounds
         contentView.addSubview(progressView)
@@ -60,7 +63,9 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
             })
         
             }) { (image, _, _, _) in
+                if let image = image {
                 self.calculateImageFrame(image)
+                }
                 self.imageView.image = image
                 self.progressView.hidden = true
         }
@@ -76,9 +81,7 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
     
     lazy var scrollView: UIScrollView = {
         let scro = UIScrollView()
-        scro.delegate = self
-        scro.minimumZoomScale = 1.0
-        scro.maximumZoomScale = 1.5
+        
         return scro
     }()
 
@@ -105,6 +108,11 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    // 复位
+    func reset() {
+        
+        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: false)
+    }
     deinit {
         
         print("死")
@@ -120,37 +128,34 @@ extension LSYPhotoCollectionViewCell : UIScrollViewDelegate {
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        var topInset = (scrollView.bounds.height - view!.frame.size.height) * 0.5
-        topInset = topInset < 0 ? 0 : topInset
-        
-        var leftInset = (scrollView.bounds.width - view!.frame.size.width) * 0.5
-        leftInset = leftInset < 0 ? 0 : leftInset
-        
-        scrollView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: 0, right: 0)
+        UIView.animateWithDuration(0.2) {
+            var topInset = (scrollView.bounds.height - view!.frame.size.height) * 0.5
+            topInset = topInset < 0 ? 0 : topInset
+            
+            var leftInset = (scrollView.bounds.width - view!.frame.size.width) * 0.5
+            leftInset = leftInset < 0 ? 0 : leftInset
+            
+            scrollView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: 0, right: 0)
+        }
     }
-    
-    func scrollViewDidZoom(scrollView: UIScrollView) {
-       
-        
-    }
+
 }
 
 extension LSYPhotoCollectionViewCell: LSYImageViewDelegate
 {
-    func tapDisMiss() {
+    func handleImageDisMiss(ges: UITapGestureRecognizer) {
         cellDelegate?.disMissViewController()
     }
     
-    func handleImageViewDoubleTap(view: UIImageView, touch: UITouch) {
-      let touchPoint = touch.locationInView(view)
+    func handleImageViewDoubleTap(ges: UITapGestureRecognizer) {
+        let touchPoint = ges.locationInView(ges.view)
         if scrollView.zoomScale > scrollView.minimumZoomScale {
             // zoom out
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         } else {
-    
+            
             scrollView.zoomToRect(zoomRectForScrollViewWith(scrollView.maximumZoomScale, touchPoint: touchPoint), animated: true)
         }
-        
     }
     
     func zoomRectForScrollViewWith(scale: CGFloat, touchPoint: CGPoint) -> CGRect {

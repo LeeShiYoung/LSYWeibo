@@ -17,10 +17,6 @@ class LSYPhotoBrowserViewController: UICollectionViewController {
     var photos: [LSYPhoto]?
     // 当前页
     var indexPath: NSIndexPath?
-    // 
-//    var fromViewC: UICollectionView?
-//    
-//    var fromViewT: UITableView?
     
     var fromViewE: UIView?
   
@@ -83,15 +79,19 @@ extension LSYPhotoBrowserViewController {
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let itemCell = cell as! LSYPhotoCollectionViewCell
+    
+        itemCell.reset()
+    }
+
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
     override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
         return UIStatusBarAnimation.Slide
-    }
-    
-    
+    }   
 }
 
 extension LSYPhotoBrowserViewController: LSYTransitionAnimatorDelegate
