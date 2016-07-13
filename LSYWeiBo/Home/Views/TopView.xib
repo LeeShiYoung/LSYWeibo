@@ -55,9 +55,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_vip" translatesAutoresizingMaskIntoConstraints="NO" id="QIl-L2-AZB">
                     <rect key="frame" x="33" y="33" width="17" height="17"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gV-r4-mr1">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gV-r4-mr1">
                     <rect key="frame" x="352" y="14" width="13" height="22"/>
-                    <state key="normal" image="navigationbar_arrow_down"/>
+                    <state key="normal" image="timeline_icon_more"/>
+                    <state key="highlighted" image="timeline_icon_more_highlighted"/>
                     <connections>
                         <action selector="downBtnDidClick:" destination="PGf-g0-TJi" eventType="touchUpInside" id="OtH-uq-BxY"/>
                     </connections>
@@ -135,6 +136,7 @@
     </objects>
     <resources>
         <image name="avatar_vip" width="17" height="17"/>
-        <image name="navigationbar_arrow_down" width="13" height="7"/>
+        <image name="timeline_icon_more" width="15" height="15"/>
+        <image name="timeline_icon_more_highlighted" width="15" height="15"/>
     </resources>
 </document>

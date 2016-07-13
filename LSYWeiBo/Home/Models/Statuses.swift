@@ -156,6 +156,7 @@ class Statuses: Mappable {
         
         let group = dispatch_group_create()
         for stat in statues {
+            
             // 原创微博内容(图文)
             if let statText = stat.text {
                 stat.attributedString = EmoticonPackage.emoticonAttributedString(statText)
@@ -180,21 +181,26 @@ class Statuses: Mappable {
                 let diskClourse = {
                     (diskImage: UIImage) -> Void in
                     stat.cachePic_size = diskImage.size
-                    stat.pic_type = url.pathExtension;
+                
                     dispatch_group_leave(group)
                 }
                 
                 // 从网络获取图片尺寸
                 let netClourse = {
                     (url: NSURL) -> Void in
+                    /* ImageScout 有的时候不回调*/
                     /*ImageScout.scoutManager.scoutImageWithURL(url, completion: { (error, size, type) in
                         
                         stat.cachePic_size = size
                         stat.pic_type = type.rawValue
                         dispatch_group_leave(group)
                     })*/
-                    SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, _) in
-                        stat.cachePic_size = image.size
+                    SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, url) in
+                        if let image = image {
+                            stat.cachePic_size = image.size
+                        } else {
+                            stat.cachePic_size = CGSize(width: 100, height: 100)
+                        }
                         dispatch_group_leave(group)
                     })
                 }
@@ -213,7 +219,6 @@ class Statuses: Mappable {
     }
 
     /***********ObjectMapper****************/
-    
     required init?(_ map: Map) {
         
     }

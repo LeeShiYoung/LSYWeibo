@@ -80,9 +80,7 @@ extension LSYPhotoBrowserViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        let itemCell = cell as! LSYPhotoCollectionViewCell
-    
-        itemCell.reset()
+     
     }
 
     override func prefersStatusBarHidden() -> Bool {

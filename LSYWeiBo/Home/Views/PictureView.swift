@@ -53,10 +53,17 @@ class PictureView: UICollectionView {
         
         // 只有 1 张配图
         if count == 1 && count != nil{
-            
+      
             let imageSize = statues?.cachePic_size
-            pictureLayout.itemSize = imageSize ?? CGSize(width: 100, height: 100)
-            return imageSize!
+            let scale = (imageSize!.width) / (imageSize?.height)!
+           
+            if scale < 0.4 {//长图
+                pictureLayout.itemSize = CGSize(width: 100, height: 130)
+                return CGSize(width: 100, height: 130)
+            } else {
+                pictureLayout.itemSize = imageSize ?? CGSize(width: 100, height: 100)
+                return imageSize!
+            }
         }
         
         // 2张
@@ -141,11 +148,20 @@ extension PictureView: UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - UICollectionViewCell
 class PictureCollectionViewCell: UICollectionViewCell {
  
+    @IBOutlet weak var tyoeIcon: UIImageView!
     @IBOutlet weak var picView: UIImageView!
     var p_url: NSURL? {
         didSet{
-            
-            picView.sd_setImageWithURL(p_url)
+       
+            picView.sd_setImageWithURL(p_url) {[weak self] (image, error, _, url) in
+                if url.pathExtension == "gif" || url.pathExtension == "GIF" {
+                    self!.tyoeIcon.image = UIImage(named: "timeline_image_gif")
+                } else if image.size.width / image.size.height < 0.4 {
+                    self!.tyoeIcon.image = UIImage(named: "timeline_image_longimage")
+                } else {
+                    self!.tyoeIcon.image = nil
+                }
+            }
         }
     }
     

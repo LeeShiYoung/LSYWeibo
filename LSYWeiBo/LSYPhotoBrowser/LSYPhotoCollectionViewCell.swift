@@ -17,7 +17,7 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
     weak var cellDelegate: LSYCellDelegate?
     var photo: LSYPhoto? {
         didSet{
-        
+            reset()
             // 拿到小图
             var sImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(photo!.thumbUrl?.absoluteString)
             
@@ -87,20 +87,16 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
 
     private lazy var progressView: LSYProgressView = LSYProgressView()
     private func calculateImageFrame(image : UIImage) {
-        
-       
-        // 1.计算位置
+      
         let imageWidth = UIScreen.mainScreen().bounds.width
         let imageHeight = image.size.height / image.size.width * imageWidth
-        
-        // 2.设置frame
+     
         imageView.frame = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
-        // 3.设置contentSize
+      
         scrollView.contentSize = CGSize(width: imageWidth, height: imageHeight)
-        
-        // 4.判断是长图还是短图
+       
         if imageHeight < UIScreen.mainScreen().bounds.height { // 短图
-            // 设置偏移量
+          
             let topInset = (UIScreen.mainScreen().bounds.height - imageHeight) * 0.5
             scrollView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         } else { // 长图
@@ -109,10 +105,14 @@ class LSYPhotoCollectionViewCell: UICollectionViewCell {
     }
 
     // 复位
-    func reset() {
-        
-        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: false)
+    private func reset()
+    {
+        scrollView.contentInset = UIEdgeInsetsZero
+        scrollView.contentOffset = CGPointZero
+        scrollView.contentSize = CGSizeZero
+        imageView.transform = CGAffineTransformIdentity
     }
+
     deinit {
         
         print("死")
@@ -128,17 +128,15 @@ extension LSYPhotoCollectionViewCell : UIScrollViewDelegate {
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        UIView.animateWithDuration(0.2) {
-            var topInset = (scrollView.bounds.height - view!.frame.size.height) * 0.5
-            topInset = topInset < 0 ? 0 : topInset
+        UIView.animateWithDuration(0.2) { 
+            var offsetX = (UIScreen.mainScreen().bounds.width - view!.frame.width) * 0.5
+            var offsetY = (UIScreen.mainScreen().bounds.height - view!.frame.height) * 0.5
+            offsetX = offsetX < 0 ? 0 : offsetX
+            offsetY = offsetY < 0 ? 0 : offsetY
             
-            var leftInset = (scrollView.bounds.width - view!.frame.size.width) * 0.5
-            leftInset = leftInset < 0 ? 0 : leftInset
-            
-            scrollView.contentInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: 0, right: 0)
+            scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: offsetY, right: offsetX)
         }
     }
-
 }
 
 extension LSYPhotoCollectionViewCell: LSYImageViewDelegate
@@ -150,7 +148,7 @@ extension LSYPhotoCollectionViewCell: LSYImageViewDelegate
     func handleImageViewDoubleTap(ges: UITapGestureRecognizer) {
         let touchPoint = ges.locationInView(ges.view)
         if scrollView.zoomScale > scrollView.minimumZoomScale {
-            // zoom out
+            
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         } else {
             
