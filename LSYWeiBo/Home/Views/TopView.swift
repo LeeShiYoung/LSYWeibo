@@ -51,7 +51,6 @@ class TopView: UIView {
             timeLabel.text = statues?.create_at_Str
             mbrankImageView.image = statues?.user?.mbrankImage
             soureLabel.text = "来自: " + statues!.source_sub!
-//            contentLabel.attributedText = EmoticonPackage.emoticonAttributedString(statues?.text ?? "")
             contentLabel.attributedText = statues?.attributedString
             acatarView.image = statues?.user?.acatarImage
         }

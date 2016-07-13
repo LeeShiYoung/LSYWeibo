@@ -21,7 +21,7 @@ class PictureOriginalTableViewCell: HomeTableViewCell {
         }
 
         bottomView.snp_makeConstraints { (make) in
-            make.height.equalTo(50)
+            make.height.equalTo(50).priorityLow()
             make.left.equalTo(contentView.snp_left)
             make.right.equalTo(contentView.snp_right)
             make.bottom.equalTo(contentView.snp_bottom)

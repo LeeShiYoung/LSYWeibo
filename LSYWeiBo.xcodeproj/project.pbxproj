@@ -45,6 +45,7 @@
 		C95BF9371CDC7FE500F6B5E6 /* OAuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95BF9361CDC7FE500F6B5E6 /* OAuthViewController.storyboard */; };
 		C95BF9391CDC9A7F00F6B5E6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95BF9381CDC9A7F00F6B5E6 /* WelcomeViewController.swift */; };
 		C95BF93B1CDC9A8B00F6B5E6 /* WelcomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95BF93A1CDC9A8B00F6B5E6 /* WelcomeViewController.storyboard */; };
+		C96967C11D362428006FBA77 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96967C01D362428006FBA77 /* Comments.swift */; };
 		C96AAE451D26479C00D8644C /* LSYPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AAE411D26479C00D8644C /* LSYPhotoBrowserViewController.swift */; };
 		C96AAE461D26479C00D8644C /* LSYPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AAE421D26479C00D8644C /* LSYPhotoCollectionViewCell.swift */; };
 		C96AAE481D26479C00D8644C /* LSYTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AAE441D26479C00D8644C /* LSYTransitionAnimator.swift */; };
@@ -159,6 +160,7 @@
 		C95BF9361CDC7FE500F6B5E6 /* OAuthViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OAuthViewController.storyboard; sourceTree = "<group>"; };
 		C95BF9381CDC9A7F00F6B5E6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C95BF93A1CDC9A8B00F6B5E6 /* WelcomeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeViewController.storyboard; sourceTree = "<group>"; };
+		C96967C01D362428006FBA77 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		C96AAE411D26479C00D8644C /* LSYPhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYPhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		C96AAE421D26479C00D8644C /* LSYPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C96AAE441D26479C00D8644C /* LSYTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			children = (
 				C98B1A721D20CCC700E94163 /* Statuses.swift */,
 				C98B1A731D20CCC700E94163 /* Users.swift */,
+				C96967C01D362428006FBA77 /* Comments.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				C9D769561CF2B4DE00603598 /* EmoticonPackage.swift in Sources */,
 				C95BF8951CD9FA6900F6B5E6 /* NetWorkTools.swift in Sources */,
 				1FBA6A631CDDC75A00268A7A /* UserAccount.swift in Sources */,
+				C96967C11D362428006FBA77 /* Comments.swift in Sources */,
 				C98F9F7A1D0CF8DF00789478 /* ScoutOperation.swift in Sources */,
 				C9D0908A1D21141F00DF6D70 /* WebViewController.swift in Sources */,
 				C93C27521CFD94030076E113 /* Pictures.swift in Sources */,

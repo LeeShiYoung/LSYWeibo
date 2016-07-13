@@ -4,92 +4,74 @@
 //
 //  Created by 李世洋 on 16/6/28.
 //  Copyright © 2016年 李世洋. All rights reserved.
-//
+// 微博正文
 
 import UIKit
 
+enum showCellMode {
+    case original //原创
+    case forward //转发
+}
+
 class StatusBodyTableViewController: UITableViewController {
 
+    // 微博数据
+    var statues: Statuses?
+    
+    // 评论数据
+    var comments: [Comments]?
+    
+    // 原创/转发
+    var mode: showCellMode?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // 获取评论数据
+        Comments.loadComments(statues!.id) { (comments) in
+            self.comments = comments
+        }
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
+// MARK: - Table view data source
+extension StatusBodyTableViewController
+{
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        return 2
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+   
+        return section == 0 ? 1 : comments?.count ?? 0
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        
+        switch indexPath {
+        case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier.cellID(statues!), forIndexPath: indexPath) as! HomeTableViewCell
+            cell.statues = statues
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier.cellID(statues!), forIndexPath: indexPath) as! HomeTableViewCell
+            cell.statues = statues
+            return cell
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return tableView.fd_heightForCellWithIdentifier(CellReuseIdentifier.cellID(statues!), cacheByKey: statues!.id, configuration: {[weak self] (cell) in
+            (cell as! HomeTableViewCell).statues = self!.statues
+        })
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 重置
+        statues?.statusBody = false
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

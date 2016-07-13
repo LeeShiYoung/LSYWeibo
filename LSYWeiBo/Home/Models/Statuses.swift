@@ -107,6 +107,9 @@ class Statuses: Mappable {
     // text 图文混排的 字符串
     var attributedString: NSAttributedString?
     
+    // 微博正文标识
+    var statusBody = false
+    
     // 获取 微博 数据
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
         

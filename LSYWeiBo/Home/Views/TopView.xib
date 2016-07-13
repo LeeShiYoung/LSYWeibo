@@ -55,8 +55,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_vip" translatesAutoresizingMaskIntoConstraints="NO" id="QIl-L2-AZB">
                     <rect key="frame" x="33" y="33" width="17" height="17"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gV-r4-mr1">
-                    <rect key="frame" x="352" y="14" width="13" height="22"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gV-r4-mr1">
+                    <rect key="frame" x="350" y="14" width="15" height="22"/>
                     <state key="normal" image="timeline_icon_more"/>
                     <state key="highlighted" image="timeline_icon_more_highlighted"/>
                     <connections>
