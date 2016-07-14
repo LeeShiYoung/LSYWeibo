@@ -49,10 +49,18 @@ class HomeTableViewCell: UITableViewCell {
                 pic_size!.height == 0 ? make.bottom.equalTo(bottomView.snp_top).priorityHigh() : make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityHigh()
             }
             
+            // 微博正文 重新布局
             if statues!.statusBody {
-                bottomView.removeFromSuperview()
+                bottomView.hidden = true
+                
                 pictureView.snp_updateConstraints(closure: { (make) in
-                    make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+                    make.bottom.equalTo(contentView.snp_bottom)
+                })
+            }
+            
+            if statues!.statusBody && backgroundButton.superview != nil {
+                backgroundButton.snp_updateConstraints(closure: { (make) in
+                    make.bottom.equalTo(contentView.snp_bottom)
                 })
             }
         }

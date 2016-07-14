@@ -31,6 +31,8 @@
 		1FDEC6681CF09FD90079770A /* EmojiToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FDEC6671CF09FD90079770A /* EmojiToolBar.xib */; };
 		1FDEC66A1CF0A5B80079770A /* EmojiKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDEC6691CF0A5B80079770A /* EmojiKeyBoardViewController.swift */; };
 		66D56715B6F5994096BEF3D5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE9C1338B0D2A4272D70436 /* Pods.framework */; };
+		C935FFAF1D373A5B0033EC60 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935FFAE1D373A5B0033EC60 /* CommentsTableViewCell.swift */; };
+		C935FFB11D375DD40033EC60 /* CommentsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C935FFB01D375DD40033EC60 /* CommentsHeaderView.xib */; };
 		C93C27511CFD94030076E113 /* PictureButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C274E1CFD94030076E113 /* PictureButtonCollectionViewCell.swift */; };
 		C93C27521CFD94030076E113 /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C274F1CFD94030076E113 /* Pictures.swift */; };
 		C93C27531CFD94030076E113 /* PictureSelectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C27501CFD94030076E113 /* PictureSelectCollectionViewController.swift */; };
@@ -146,6 +148,8 @@
 		1FDEC6671CF09FD90079770A /* EmojiToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmojiToolBar.xib; sourceTree = "<group>"; };
 		1FDEC6691CF0A5B80079770A /* EmojiKeyBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyBoardViewController.swift; sourceTree = "<group>"; };
 		9430C69374F1B5A60C279FB8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C935FFAE1D373A5B0033EC60 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		C935FFB01D375DD40033EC60 /* CommentsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsHeaderView.xib; sourceTree = "<group>"; };
 		C93C274E1CFD94030076E113 /* PictureButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		C93C274F1CFD94030076E113 /* Pictures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		C93C27501CFD94030076E113 /* PictureSelectCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureSelectCollectionViewController.swift; sourceTree = "<group>"; };
@@ -521,6 +525,8 @@
 				C98B1A7E1D20CCC700E94163 /* StatuesMessage.xib */,
 				C98B1A7F1D20CCC700E94163 /* TopView.swift */,
 				C98B1A801D20CCC700E94163 /* TopView.xib */,
+				C935FFAE1D373A5B0033EC60 /* CommentsTableViewCell.swift */,
+				C935FFB01D375DD40033EC60 /* CommentsHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -688,6 +694,7 @@
 				C98B1A8E1D20CCC700E94163 /* TopView.xib in Resources */,
 				1F46C4161CD533B4006AECF8 /* NullViewController.storyboard in Resources */,
 				C98B1A6B1D20CCB600E94163 /* CustomActionSheetController.storyboard in Resources */,
+				C935FFB11D375DD40033EC60 /* CommentsHeaderView.xib in Resources */,
 				C95BF9371CDC7FE500F6B5E6 /* OAuthViewController.storyboard in Resources */,
 				1F5CA5CF1CD6163700CE1736 /* MiddleButton.xib in Resources */,
 				1FDEC6681CF09FD90079770A /* EmojiToolBar.xib in Resources */,
@@ -800,6 +807,7 @@
 				C98B1A881D20CCC700E94163 /* PictureOriginalTableViewCell.swift in Sources */,
 				C98B1A621D20CACA00E94163 /* Transitior.swift in Sources */,
 				C98F9F791D0CF8DF00789478 /* ImageScout.swift in Sources */,
+				C935FFAF1D373A5B0033EC60 /* CommentsTableViewCell.swift in Sources */,
 				C98B1A9C1D20F47A00E94163 /* ReachabilityManger.swift in Sources */,
 				1F5CA5D11CD6215600CE1736 /* BaseTableViewController.swift in Sources */,
 				C93C27B91CFFD7320076E113 /* QRViewController.swift in Sources */,
@@ -955,7 +963,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = LSYproject.test;
+				PRODUCT_BUNDLE_IDENTIFIER = LSYproject.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LSYWeiBo/LSYWeiBo-Bridging-Header.h";
@@ -976,7 +984,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = LSYproject.test;
+				PRODUCT_BUNDLE_IDENTIFIER = LSYproject.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LSYWeiBo/LSYWeiBo-Bridging-Header.h";

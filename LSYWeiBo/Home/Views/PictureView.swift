@@ -15,8 +15,8 @@ class PictureView: UICollectionView {
     var statues: Statuses?
         {
         didSet{
-            
-            pictures = statues?.statePic_URLs
+            pictures = statues!.statusBody ? statues!.stateOriginal_URLs : statues?.statePic_URLs
+       
             largePhoto()
             reloadData()
         }
@@ -42,9 +42,11 @@ class PictureView: UICollectionView {
     func calculationPicSize() -> CGSize {
 
         let count = statues?.statePic_URLs?.count
+        let size_w = UIScreen.mainScreen().bounds.size.width - 20
         
         let w: CGFloat = 100
         let margin: CGFloat = 10
+        
         // 没有配图
         if count == 0 && count != nil {
             
@@ -53,31 +55,65 @@ class PictureView: UICollectionView {
         
         // 只有 1 张配图
         if count == 1 && count != nil{
-      
+            
             let imageSize = statues?.cachePic_size
-            let scale = (imageSize!.width) / (imageSize?.height)!
-           
-            if scale < 0.4 {//长图
-                pictureLayout.itemSize = CGSize(width: 100, height: 130)
-                return CGSize(width: 100, height: 130)
-            } else {
-                pictureLayout.itemSize = imageSize ?? CGSize(width: 100, height: 100)
-                return imageSize!
+            
+            let statusClosure = {
+                (size: CGSize?) -> CGSize in
+                let scale = (imageSize!.width) / (imageSize?.height)!
+                
+                if scale < 0.4 {//长图
+                    self.pictureLayout.itemSize = CGSize(width: 100, height: 130)
+                    return CGSize(width: 100, height: 130)
+                } else {
+                    self.pictureLayout.itemSize = imageSize ?? CGSize(width: 100, height: 100)
+                    return imageSize!
+                }
             }
+            
+            let statusBodyClosure = {
+                (size: CGSize?) -> CGSize in
+                
+                let size_h = size!.height * size_w / size!.width
+                let itemSize = CGSize(width: size_w, height: size_h)
+                self.pictureLayout.itemSize = itemSize
+                return itemSize
+            }
+            
+            return statues?.statusBody == false ? statusClosure(imageSize) : statusBodyClosure(imageSize)
         }
         
         // 2张
         if count == 2 && count != nil {
             
-            pictureLayout.itemSize = CGSize(width: w, height: w)
-            return CGSize(width: w * 2 + margin, height: w)
+            let statusClosure = {
+                () -> CGSize in
+                self.pictureLayout.itemSize = CGSize(width: w, height: w)
+                return CGSize(width: w * 2 + margin, height: w)
+            }
+            
+            let statusBodyClosure = {
+                () -> CGSize in
+                self.pictureLayout.itemSize = CGSize(width: (size_w - margin) / 2, height: size_w / 2 )
+                return CGSize(width: size_w, height: size_w / 2)
+            }
+            return statues?.statusBody == false ? statusClosure() : statusBodyClosure()
         }
         
         // 4 张
         if count == 4 && count != nil {
+            let statusClosure = {
+                () -> CGSize in
+                self.pictureLayout.itemSize = CGSize(width: w, height: w)
+                return CGSize(width: 2 * w + margin, height: 2 * w + margin)
+            }
             
-            pictureLayout.itemSize = CGSize(width: w, height: w)
-            return CGSize(width: 2 * w + margin, height: 2 * w + margin)
+            let statusBodyClosure = {
+                () -> CGSize in
+                self.pictureLayout.itemSize = CGSize(width: (size_w - margin) / 2, height: (size_w - margin) / 2)
+                return CGSize(width: size_w, height: size_w)
+            }
+            return statues?.statusBody == false ? statusClosure() : statusBodyClosure()
         }
         
         // 其他
@@ -141,7 +177,6 @@ extension PictureView: UICollectionViewDataSource, UICollectionViewDelegate
 
         let browser = LSYPhotoBrowserViewController(photos: photos!, indexPath: indexPath, animationedFromView: cell)
         NSNotificationCenter.defaultCenter().postNotificationName(HomePhotoBrowerNotiKey, object: nil, userInfo: ["browser": browser])
-
     }
 }
 
@@ -153,7 +188,15 @@ class PictureCollectionViewCell: UICollectionViewCell {
     var p_url: NSURL? {
         didSet{
        
-            picView.sd_setImageWithURL(p_url) {[weak self] (image, error, _, url) in
+            // 获取小图
+            let thumbnailImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(p_url!.absoluteString)
+            picView.sd_setImageWithURL(p_url, placeholderImage: thumbnailImage) {[weak self] (image, error, _, url) in
+                
+                if url.absoluteString.rangeOfString("large") != nil {
+                    self!.tyoeIcon.image = nil
+                    return
+                }
+                
                 if url.pathExtension == "gif" || url.pathExtension == "GIF" {
                     self!.tyoeIcon.image = UIImage(named: "timeline_image_gif")
                 } else if image.size.width / image.size.height < 0.4 {

@@ -286,33 +286,12 @@ extension HomeTableViewController
     private func setCellInfo(cell: HomeTableViewCell, index: NSIndexPath, status: Statuses)
     {
         cell.statues = status
-        print(status.statusBody)
     }
 
     // 跳转 微博正文
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         var index:Int = 0
-        
-        /*if let sender = sender {
-            if sender is PictureOriginalTableViewCell {
-                // 获取indexPath
-                let indexPath = tableView.indexPathForCell(sender as! PictureOriginalTableViewCell)
-                index = indexPath!.row
-                let statusBody = segue.destinationViewController as! StatusBodyTableViewController
-                statusBody.statues = dataSource![index]
-                statusBody.mode = showCellMode.original
-            }
-            
-            if sender is PictureForwardTableViewCell {
-                // 获取indexPath
-                let indexPath = tableView.indexPathForCell(sender as! PictureForwardTableViewCell)
-                index = indexPath!.row
-                let statusBody = segue.destinationViewController as! StatusBodyTableViewController
-                statusBody.statues = dataSource![index]
-                statusBody.mode = showCellMode.forward
-            }
-        }*/
         let indexPath = tableView.indexPathForCell(sender as! HomeTableViewCell)
         index = indexPath!.row
         let statusBoay = segue.destinationViewController as! StatusBodyTableViewController

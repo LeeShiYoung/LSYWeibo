@@ -12,15 +12,21 @@ import ObjectMapper
 class Comments: Mappable {
 
     // 回复时间
-    var created_at: String?
+    var created_at: String? {
+        didSet{
+            let createDate = NSDate.dateWithStr(created_at!)
+            created_at_Str = createDate.descDate
+  
+        }
+    }
     // 评论id
     var id: Int = 0
     // 评论的内容
     var text: String?
     // 用户
     var user: Users?
-    
-    
+    //  处理后的时间
+    var created_at_Str: String?
     
     // 请求评论列表
     class func loadComments(statuesID: Int, finish: (comments: [Comments]) -> ()) {

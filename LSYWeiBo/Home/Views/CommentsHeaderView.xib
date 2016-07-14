@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yqB-ch-0EH" customClass="CommentsHeaderView" customModule="LSYWeiBo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waP-wO-S37">
+                    <rect key="frame" x="0.0" y="10" width="382" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz9-Vy-pUn">
+                            <rect key="frame" x="10" y="5" width="32" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="转发">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="forwardBtnClick:" destination="yqB-ch-0EH" eventType="touchUpInside" id="HWw-Iw-tGe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZn-ib-ADS">
+                            <rect key="frame" x="62" y="5" width="32" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="评论">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="commentsBtnClick:" destination="yqB-ch-0EH" eventType="touchUpInside" id="pac-8a-HvQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="oZn-ib-ADS" firstAttribute="bottom" secondItem="pz9-Vy-pUn" secondAttribute="bottom" id="QmH-wg-IBF"/>
+                        <constraint firstItem="pz9-Vy-pUn" firstAttribute="leading" secondItem="waP-wO-S37" secondAttribute="leading" constant="10" id="d9x-hv-ypb"/>
+                        <constraint firstItem="oZn-ib-ADS" firstAttribute="top" secondItem="waP-wO-S37" secondAttribute="top" constant="5" id="mWn-MO-ago"/>
+                        <constraint firstAttribute="bottom" secondItem="pz9-Vy-pUn" secondAttribute="bottom" constant="5" id="p18-W4-hhC"/>
+                        <constraint firstItem="oZn-ib-ADS" firstAttribute="leading" secondItem="pz9-Vy-pUn" secondAttribute="trailing" constant="20" id="sFa-0G-98E"/>
+                        <constraint firstItem="pz9-Vy-pUn" firstAttribute="top" secondItem="waP-wO-S37" secondAttribute="top" constant="5" id="zCy-hg-P8p"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="waP-wO-S37" firstAttribute="top" secondItem="yqB-ch-0EH" secondAttribute="top" constant="10" id="4Mh-Z5-Ggv"/>
+                <constraint firstItem="waP-wO-S37" firstAttribute="leading" secondItem="yqB-ch-0EH" secondAttribute="leading" id="J4q-oz-QfY"/>
+                <constraint firstAttribute="bottom" secondItem="waP-wO-S37" secondAttribute="bottom" id="Toy-dd-bJ5"/>
+                <constraint firstAttribute="trailing" secondItem="waP-wO-S37" secondAttribute="trailing" id="akZ-92-tvV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buttonView" destination="waP-wO-S37" id="iLf-vX-7vD"/>
+                <outlet property="commentsBtn" destination="oZn-ib-ADS" id="Jfk-dx-RjI"/>
+                <outlet property="forwardBtn" destination="pz9-Vy-pUn" id="G6R-It-fTe"/>
+            </connections>
+            <point key="canvasLocation" x="460" y="264.5"/>
+        </view>
+    </objects>
+</document>

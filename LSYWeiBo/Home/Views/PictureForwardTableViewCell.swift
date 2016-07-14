@@ -50,14 +50,12 @@ class PictureForwardTableViewCell: HomeTableViewCell {
             make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityLow()
         }
         
-        
         bottomView.snp_makeConstraints { (make) in
             make.height.equalTo(50).priorityLow()
             make.left.equalTo(contentView.snp_left)
             make.right.equalTo(contentView.snp_right)
             make.bottom.equalTo(contentView.snp_bottom)
         }
-                
         
         backgroundButton.snp_makeConstraints { (make) in
             make.top.equalTo(topView.snp_bottom)
@@ -67,7 +65,3 @@ class PictureForwardTableViewCell: HomeTableViewCell {
         }
     }
 }
-
-
-
-
