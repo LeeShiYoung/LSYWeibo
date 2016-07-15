@@ -42,9 +42,11 @@ class StatusBodyTableViewController: UITableViewController {
     // 获取评论数据
     private func loadComments() {
         if let id = statues?.id {
-            Comments.loadComments(id) { (comments) in
+            Comments.loadComments(id, finish: { (comments) in
                 self.comments = comments
-            }
+                }, field: { (error) in
+                    print(error)
+            })
         } else {
             print("发生错误")
         }
@@ -75,7 +77,7 @@ extension StatusBodyTableViewController
 
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier.cellID(statues!), forIndexPath: indexPath) as! HomeTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier.bodyCellID(statues!), forIndexPath: indexPath) as! HomeTableViewCell
             cell.statues = statues
             return cell
          default:
@@ -89,7 +91,7 @@ extension StatusBodyTableViewController
         
         switch indexPath.section {
         case 0:
-            return tableView.fd_heightForCellWithIdentifier(CellReuseIdentifier.cellID(statues!), cacheByKey: statues!.id, configuration: {[weak self] (cell) in
+            return tableView.fd_heightForCellWithIdentifier(CellReuseIdentifier.bodyCellID(statues!), cacheByKey: statues!.id, configuration: {[weak self] (cell) in
                 (cell as! HomeTableViewCell).statues = self!.statues
                 })
         default:

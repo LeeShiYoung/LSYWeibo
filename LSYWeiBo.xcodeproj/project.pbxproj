@@ -33,6 +33,7 @@
 		66D56715B6F5994096BEF3D5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE9C1338B0D2A4272D70436 /* Pods.framework */; };
 		C935FFAF1D373A5B0033EC60 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935FFAE1D373A5B0033EC60 /* CommentsTableViewCell.swift */; };
 		C935FFB11D375DD40033EC60 /* CommentsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C935FFB01D375DD40033EC60 /* CommentsHeaderView.xib */; };
+		C935FFED1D38B6570033EC60 /* StatusBodyTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C935FFEC1D38B6570033EC60 /* StatusBodyTableViewController.storyboard */; };
 		C93C27511CFD94030076E113 /* PictureButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C274E1CFD94030076E113 /* PictureButtonCollectionViewCell.swift */; };
 		C93C27521CFD94030076E113 /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C274F1CFD94030076E113 /* Pictures.swift */; };
 		C93C27531CFD94030076E113 /* PictureSelectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C27501CFD94030076E113 /* PictureSelectCollectionViewController.swift */; };
@@ -150,6 +151,7 @@
 		9430C69374F1B5A60C279FB8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C935FFAE1D373A5B0033EC60 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		C935FFB01D375DD40033EC60 /* CommentsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsHeaderView.xib; sourceTree = "<group>"; };
+		C935FFEC1D38B6570033EC60 /* StatusBodyTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatusBodyTableViewController.storyboard; sourceTree = "<group>"; };
 		C93C274E1CFD94030076E113 /* PictureButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		C93C274F1CFD94030076E113 /* Pictures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		C93C27501CFD94030076E113 /* PictureSelectCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureSelectCollectionViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				C98B1A691D20CCB600E94163 /* PopoverViewController.storyboard */,
 				C9D090891D21141F00DF6D70 /* WebViewController.swift */,
 				C9B3C1541D2260D3008CC526 /* StatusBodyTableViewController.swift */,
+				C935FFEC1D38B6570033EC60 /* StatusBodyTableViewController.storyboard */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				C93C27891CFE6D810076E113 /* PictureSelectCollectionViewController.storyboard in Resources */,
 				1F46C4031CD52067006AECF8 /* Images.xcassets in Resources */,
 				C98B1A8E1D20CCC700E94163 /* TopView.xib in Resources */,
+				C935FFED1D38B6570033EC60 /* StatusBodyTableViewController.storyboard in Resources */,
 				1F46C4161CD533B4006AECF8 /* NullViewController.storyboard in Resources */,
 				C98B1A6B1D20CCB600E94163 /* CustomActionSheetController.storyboard in Resources */,
 				C935FFB11D375DD40033EC60 /* CommentsHeaderView.xib in Resources */,

@@ -186,6 +186,7 @@ extension HYLabel {
         // 4.设置间距为0
         textContainer.lineFragmentPadding = 0
     }
+  
     
     /// 准备文本
     private func prepareText() {
@@ -211,8 +212,7 @@ extension HYLabel {
         textStorage.setAttributedString(attrStringM)
         
         // 4.匹配URL
-         let regulaStr = String(format: "<a href='(((http[s]{1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?))'>((?!<\\/a>).)*<\\/a>|(((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?))", "%","%","%","%")
-        if let linkRanges = getRanges(regulaStr) {
+        if let linkRanges = getRangesFromResult(ExpressionManger.linkExpressionManger()!) {
             
             /*for range in linkRanges {
              textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
@@ -233,15 +233,13 @@ extension HYLabel {
             }
             
             //MARK: 获取 替换后的 网页链接 字符串
-            if let replaceLickRanges = getRanges("&.*?&") {
+            if let replaceLickRanges = getRangesFromResult(ExpressionManger.replaceLinkExpressionManger()!) {
                 self.linkRanges = replaceLickRanges
             }
-
         }
         
         // 5.匹配@用户
-        
-        if let userRanges = getRanges("@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*") {
+        if let userRanges = getRangesFromResult(ExpressionManger.atExpressionManger()!) {
             self.userRanges = userRanges
             for range in userRanges {
                 textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
@@ -249,13 +247,12 @@ extension HYLabel {
         }
         
         // 6.匹配话题##
-        if let topicRanges = getRanges("#[^@#]+?#") {
+        if let topicRanges = getRangesFromResult(ExpressionManger.topicExpressionManger()!) {
             self.topicRanges = topicRanges
             for range in topicRanges {
                 textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
             }
         }
-        
         setNeedsDisplay()
     }
 }
@@ -263,14 +260,14 @@ extension HYLabel {
 
 // MARK:- 字符串匹配封装
 extension HYLabel {
-    private func getRanges(pattern : String) -> [NSRange]? {
+    /*private func getRanges(pattern : String) -> [NSRange]? {
         // 创建正则表达式对象
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+        /*guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
             return nil
-        }
-        
-        return getRangesFromResult(regex)
-    }
+        }*/
+        print(ExpressionManger.linkExpressionManger()!)
+        return getRangesFromResult(ExpressionManger.linkExpressionManger()!)
+    }*/
     
     private func getLinkRanges() -> [NSRange]? {
         // 创建正则表达式
@@ -281,7 +278,7 @@ extension HYLabel {
         return getRangesFromResult(detector)
     }
     
-    private func getRangesFromResult(regex : NSRegularExpression) -> [NSRange] {
+    private func getRangesFromResult(regex : NSRegularExpression) -> [NSRange]? {
         // 1.匹配结果
         let results = regex.matchesInString(textStorage.string, options: [], range: NSRange(location: 0, length: textStorage.length))
         
@@ -441,5 +438,63 @@ extension HYLabel {
         }
         return super.hitTest(point, withEvent: event)
     }
+}
+
+// MARK: 正则 写成单例
+private class ExpressionManger
+{
+    private static let regulaLink = String(format: "<a href='(((http[s]{1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?))'>((?!<\\/a>).)*<\\/a>|(((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%@^&*+?:_/=<>]*)?))", "%","%","%","%")
+    
+    private static let regulaAt = "@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*"
+    
+    private static let regulaTopic = "#[^@#]+?#"
+
+    private static let replaceLink = "&.*?&"
+    
+     static let linkExpression: NSRegularExpression? = {
+        
+        guard let regex = try? NSRegularExpression(pattern: regulaLink, options: []) else {
+            return nil
+        }
+        return regex
+    }()
+
+    static let atExpression: NSRegularExpression? = {
+        
+        guard let regex = try? NSRegularExpression(pattern: regulaAt, options: []) else {
+            return nil
+        }
+        return regex
+    }()
+    
+    static let topicExpression: NSRegularExpression? = {
+        
+        guard let regex = try? NSRegularExpression(pattern: regulaTopic, options: []) else {
+            return nil
+        }
+        return regex
+    }()
+    
+    static let replaceLinkExpression: NSRegularExpression? = {
+        
+        guard let regex = try? NSRegularExpression(pattern: replaceLink, options: []) else {
+            return nil
+        }
+        return regex
+    }()
+    
+    class func linkExpressionManger() -> NSRegularExpression? {
+        return linkExpression
+    }
+    class func atExpressionManger() -> NSRegularExpression? {
+        return atExpression
+    }
+    class func topicExpressionManger() -> NSRegularExpression? {
+        return topicExpression
+    }
+    class func replaceLinkExpressionManger() -> NSRegularExpression? {
+        return replaceLinkExpression
+    }
+
 }
 

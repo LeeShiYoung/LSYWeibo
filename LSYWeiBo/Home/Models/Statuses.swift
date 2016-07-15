@@ -109,7 +109,7 @@ class Statuses: Mappable {
     
     // 微博正文标识
     var statusBody = false
-    
+  
     // 获取 微博 数据
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
         
@@ -183,8 +183,11 @@ class Statuses: Mappable {
                 // 从本地获取图片 -> 得到尺寸
                 let diskClourse = {
                     (diskImage: UIImage) -> Void in
+                    if let retweeted = stat.retweeted_status {
+                        retweeted.cachePic_size = diskImage.size
+                    }
                     stat.cachePic_size = diskImage.size
-                
+                    
                     dispatch_group_leave(group)
                 }
                 
@@ -198,8 +201,12 @@ class Statuses: Mappable {
                         stat.pic_type = type.rawValue
                         dispatch_group_leave(group)
                     })*/
+                    
                     SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, url) in
                         if let image = image {
+                            if let retweeted = stat.retweeted_status {
+                                retweeted.cachePic_size = image.size
+                            }
                             stat.cachePic_size = image.size
                         } else {
                             stat.cachePic_size = CGSize(width: 100, height: 100)

@@ -16,17 +16,25 @@ enum CellReuseIdentifier: String {
     case forward = "forwardIdentifier"
     case line = "recordLine"
     
+    case originalBody = "originalBodyIdentifier"
+    case forwardBody = "forwardBodyIdentifier"
+    
     // 获取 cell 重用标示
     static func cellID(statues: Statuses) -> String {
        
        return statues.retweeted_status != nil ? CellReuseIdentifier.forward.rawValue : CellReuseIdentifier.original.rawValue
+    }
+    
+    static func bodyCellID(statues: Statuses) -> String {
+        
+        return statues.retweeted_status != nil ? CellReuseIdentifier.forwardBody.rawValue : CellReuseIdentifier.originalBody.rawValue
     }
 }
 
 protocol HomeTableViewCellDelegate: NSObjectProtocol {
     func downBtnDidSelected(btn: UIButton)
     func linkTap(link: String)
-    func forwardBtnClic(btn: UIButton)
+    func forwardBtnClic(cell: HomeTableViewCell)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -39,7 +47,6 @@ class HomeTableViewCell: UITableViewCell {
             
             topView.statues = statues
             pictureView.statues = statues
-            bottomView.status = statues
             pic_size = pictureView.calculationPicSize()
            
             pictureView.snp_updateConstraints { (make) in
@@ -48,19 +55,20 @@ class HomeTableViewCell: UITableViewCell {
                 
                 pic_size!.height == 0 ? make.bottom.equalTo(bottomView.snp_top).priorityHigh() : make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityHigh()
             }
+            if !statues!.statusBody {
+                bottomView.status = statues
+            }
             
             // 微博正文 重新布局
             if statues!.statusBody {
-                bottomView.hidden = true
                 
-                pictureView.snp_updateConstraints(closure: { (make) in
-                    make.bottom.equalTo(contentView.snp_bottom)
+               _ = bottomView.subviews.map({ (button) -> Void in
+                    button.removeFromSuperview()
+                    button.snp_removeConstraints()
                 })
-            }
-            
-            if statues!.statusBody && backgroundButton.superview != nil {
-                backgroundButton.snp_updateConstraints(closure: { (make) in
-                    make.bottom.equalTo(contentView.snp_bottom)
+                
+                bottomView.snp_updateConstraints(closure: { (make) in
+                    make.height.equalTo(0)
                 })
             }
         }
@@ -136,7 +144,7 @@ class HomeTableViewCell: UITableViewCell {
     }()
     
     @objc private func bckBtnDidClick(btn: UIButton) {
-        delegate?.forwardBtnClic(btn)
+        delegate?.forwardBtnClic(self)
     }
 }
 

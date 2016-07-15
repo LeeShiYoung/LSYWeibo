@@ -16,7 +16,6 @@ class Comments: Mappable {
         didSet{
             let createDate = NSDate.dateWithStr(created_at!)
             created_at_Str = createDate.descDate
-  
         }
     }
     // 评论id
@@ -29,19 +28,19 @@ class Comments: Mappable {
     var created_at_Str: String?
     
     // 请求评论列表
-    class func loadComments(statuesID: Int, finish: (comments: [Comments]) -> ()) {
+    class func loadComments(statuesID: Int, finish: (comments: [Comments]) -> (), field: (error: NSError?) -> ()) {
         
         let accessToken = UserAccount.loadAccount()?.access_token
         let parameters: [String: AnyObject] = ["access_token": accessToken!, "id": statuesID]
+        
         NetWorkTools.GET_Request("comments/show.json", parameters: parameters, success: { (result) in
           
             let cs = Mapper<Comments>().mapArray(result["comments"])
             finish(comments: cs!)
             }) { (error) in
-                
+              field(error: error)
         }
     }
-    
     
     
     required init?(_ map: Map) {

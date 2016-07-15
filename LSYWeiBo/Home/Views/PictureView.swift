@@ -28,7 +28,7 @@ class PictureView: UICollectionView {
     // 初始化方法
     init() {
         super.init(frame: CGRectZero, collectionViewLayout: pictureLayout)
-        
+        self.scrollEnabled = false
         // 注册 cell
         registerNib(UINib(nibName: "PictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PictureReuseIdentifier)
         dataSource = self

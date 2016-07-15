@@ -52,6 +52,8 @@ class HomeTableViewController: BaseTableViewController {
         // 搜索栏
         tableView.tableHeaderView = searchBar
         
+        /*tableView.estimatedRowHeight = 230
+        tableView.rowHeight = UITableViewAutomaticDimension*/
         // 加载更多数据
         tableView.mj_header = header
         tableView.mj_footer = footer
@@ -287,19 +289,28 @@ extension HomeTableViewController
     {
         cell.statues = status
     }
-
-    // 跳转 微博正文
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        var index:Int = 0
-        let indexPath = tableView.indexPathForCell(sender as! HomeTableViewCell)
-        index = indexPath!.row
-        let statusBoay = segue.destinationViewController as! StatusBodyTableViewController
-        let status = dataSource![index]
-        status.statusBody = true
-        statusBoay.statues = status
-        
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let statu = dataSource![indexPath.row]
+        let bodyVC = "StatusBodyTableViewController".storyBoard() as! StatusBodyTableViewController
+        bodyVC.statues = statu
+        statu.statusBody = true
+        navigationController?.pushViewController(bodyVC, animated: true)
     }
+
+//    // 跳转 微博正文
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//
+//        var index:Int = 0
+//        let indexPath = tableView.indexPathForCell(sender as! HomeTableViewCell)
+//        index = indexPath!.row
+//        let statusBoay = segue.destinationViewController as! StatusBodyTableViewController
+//        let status = dataSource![index]
+//        status.statusBody = true
+//        statusBoay.statues = status
+//        
+//    }
 }
 
 // MARK: - HomeTableViewCellDelegate
@@ -323,11 +334,15 @@ extension HomeTableViewController: HomeTableViewCellDelegate
     }
     
     // 跳转 转发 微博正文
-    func forwardBtnClic(btn: UIButton) {
+    func forwardBtnClic(cell: HomeTableViewCell) {
+        var index:Int = 0
+        let indexPath = tableView.indexPathForCell(cell)
+        index = indexPath!.row
+        let statu = dataSource![index].retweeted_status
         
-        let bodyVC = StatusBodyTableViewController()
-        bodyVC.title = "微博正文(转发)"
-        bodyVC.hidesBottomBarWhenPushed = true
+        let bodyVC = "StatusBodyTableViewController".storyBoard() as! StatusBodyTableViewController
+        bodyVC.statues = statu
+        statu!.statusBody = true
         navigationController?.pushViewController(bodyVC, animated: true)
     }
 }
