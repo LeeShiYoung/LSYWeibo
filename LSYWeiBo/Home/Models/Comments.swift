@@ -26,16 +26,23 @@ class Comments: Mappable {
     var user: Users?
     //  处理后的时间
     var created_at_Str: String?
+    // 评论内容的图文
+    var attributedText: NSAttributedString?
     
     // 请求评论列表
     class func loadComments(statuesID: Int, finish: (comments: [Comments]) -> (), field: (error: NSError?) -> ()) {
-        
+  
         let accessToken = UserAccount.loadAccount()?.access_token
         let parameters: [String: AnyObject] = ["access_token": accessToken!, "id": statuesID]
         
         NetWorkTools.GET_Request("comments/show.json", parameters: parameters, success: { (result) in
           
             let cs = Mapper<Comments>().mapArray(result["comments"])
+            
+            for c in cs! {
+                c.attributedText = EmoticonPackage.emoticonAttributedString(c.text!)
+            }
+            
             finish(comments: cs!)
             }) { (error) in
               field(error: error)

@@ -298,19 +298,6 @@ extension HomeTableViewController
         statu.statusBody = true
         navigationController?.pushViewController(bodyVC, animated: true)
     }
-
-//    // 跳转 微博正文
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//
-//        var index:Int = 0
-//        let indexPath = tableView.indexPathForCell(sender as! HomeTableViewCell)
-//        index = indexPath!.row
-//        let statusBoay = segue.destinationViewController as! StatusBodyTableViewController
-//        let status = dataSource![index]
-//        status.statusBody = true
-//        statusBoay.statues = status
-//        
-//    }
 }
 
 // MARK: - HomeTableViewCellDelegate

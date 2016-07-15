@@ -20,7 +20,7 @@ class CommentsTableViewCell: UITableViewCell {
     
     var comments: Comments? {
         didSet{
-            commentsContent.text = comments?.text
+            commentsContent.attributedText = comments?.attributedText
             userIcon.sd_setImageWithURL(comments?.user?.imageURL)
             userIcon.kt_addCorner(radius: 30/2)
             userName.textColor = comments?.user?.mbrank_Color
