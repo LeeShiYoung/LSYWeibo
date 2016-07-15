@@ -23,6 +23,7 @@ class CommentsTableViewCell: UITableViewCell {
             commentsContent.attributedText = comments?.attributedText
             userIcon.sd_setImageWithURL(comments?.user?.imageURL)
             userIcon.kt_addCorner(radius: 30/2)
+            userName.text = comments?.user?.name
             userName.textColor = comments?.user?.mbrank_Color
             commentsTime.text = comments?.created_at_Str
             mbrank.image = comments?.user?.mbrankImage
@@ -109,6 +110,6 @@ class CommentsHeaderView: UIView {
         list.forward = true
         list.comments = false
         buttonsClick?(type: list)
-        }
+    }
 }
 
