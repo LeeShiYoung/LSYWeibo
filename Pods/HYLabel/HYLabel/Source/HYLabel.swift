@@ -15,15 +15,8 @@ enum TapHandlerType : Int {
     case linkHandle = 3
 }
 
-//MARK: - 有BUG 父视图无法响应touch 增加协议传递响应
-public protocol HYLabelDelegate: NSObjectProtocol {
-    func hy_LabelTouchBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-    func hy_LabelTouchEnd(touches: Set<UITouch>, withEvent event: UIEvent?)
-}
-
 public class HYLabel: UILabel {
   
-    public weak var hy_Delegate: HYLabelDelegate?
     // MARK:- 属性
     // 重写系统的属性
     override public var text : String? {
@@ -306,15 +299,15 @@ extension HYLabel {
         
         // 3.是否处理了事件
         if selectedRange == nil {
-            super.touchesBegan(touches, withEvent: event)
-            hy_Delegate?.hy_LabelTouchBegan(touches, withEvent: event)
+//            super.touchesBegan(touches, withEvent: event)
+//            hy_Delegate?.hy_LabelTouchBegan(touches, withEvent: event)
         }
     }
     
     override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if selectedRange == nil {
-            super.touchesBegan(touches, withEvent: event)
-            hy_Delegate?.hy_LabelTouchEnd(touches, withEvent: event)
+//            super.touchesBegan(touches, withEvent: event)
+//            hy_Delegate?.hy_LabelTouchEnd(touches, withEvent: event)
             return
         }
         
@@ -425,12 +418,18 @@ extension HYLabel {
 extension HYLabel {
     
     public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-      
         if let _ = getSelectRange(point) {
             return super.hitTest(point, withEvent: event)
         }
 
         if let sup = self.superview where self.superview is UIButton {
+            let poiInlabel = sup.convertPoint(point, fromView: self)
+            if sup.pointInside(poiInlabel, withEvent: event) {
+                return sup
+            }
+        }
+        
+        if let sup = self.superview where self.superview! is UIView {
             let poiInlabel = sup.convertPoint(point, fromView: self)
             if sup.pointInside(poiInlabel, withEvent: event) {
                 return sup

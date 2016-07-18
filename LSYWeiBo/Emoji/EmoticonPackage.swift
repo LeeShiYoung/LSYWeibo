@@ -32,6 +32,7 @@ class EmoticonPackage: NSObject {
     
             while count > 0 {
             
+                
                 count -= 1
                 let checkingResult = result[count]
                 let tempStr = (str as NSString).substringWithRange(checkingResult.range)

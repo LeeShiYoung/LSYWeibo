@@ -27,7 +27,7 @@ class StatusBodyTableViewController: UITableViewController {
         loadComments()
         
         headerView.status = statues
-        headerView.buttonsClick = {[weak self](type) in
+        headerView.buttonsClick = {[weak self](type) in //参数对象
             
             if type.comments {
                 self!.loadComments()

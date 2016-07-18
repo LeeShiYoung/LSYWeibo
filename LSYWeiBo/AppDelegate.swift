@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if noti.object as! Bool {
             window?.rootViewController = MainViewController()
         } else {
+            
             window?.rootViewController = "NewfeatureCollectionViewController".storyBoard()
         }
     }

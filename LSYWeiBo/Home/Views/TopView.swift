@@ -59,7 +59,6 @@ class TopView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        contentLabel.hy_Delegate = self
         // 监听@谁谁谁的点击
         contentLabel.userTapHandler = { (label, user, range) in
        
@@ -77,17 +76,4 @@ class TopView: UIView {
       
     }
 
-}
-
-extension TopView: HYLabelDelegate {
-    
-    func hy_LabelTouchEnd(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
-    func hy_LabelTouchBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-   
-        super.touchesEnded(touches, withEvent: event)
-    }
 }
