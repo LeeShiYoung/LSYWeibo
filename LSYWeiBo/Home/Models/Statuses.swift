@@ -102,13 +102,20 @@ class Statuses: Mappable {
      var comments_count: Int = 0
     
     // 表态数
-     var attitudes_count: Int = 0
+    var attitudes_count: Int = 0 {
+        didSet{
+            
+        }
+    }
     
     // text 图文混排的 字符串
     var attributedString: NSAttributedString?
     
     // 微博正文标识
     var statusBody = false
+    
+    // 已点赞
+    var attitudes = false
   
     // 获取 微博 数据
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
