@@ -56,6 +56,9 @@ class StatusBodyTableViewController: UITableViewController {
     private func loadForward() {
         print("转发")
     }
+    deinit {
+        print("StatusBodyTableViewController 死")
+    }
     
     private lazy var headerView: CommentsHeaderView = "CommentsHeaderView".loadNib(self) as! CommentsHeaderView
 }
@@ -77,6 +80,7 @@ extension StatusBodyTableViewController
 
         switch indexPath.section {
         case 0:
+            
             let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier.bodyCellID(statues!), forIndexPath: indexPath) as! HomeTableViewCell
             cell.statues = statues
             return cell
@@ -135,6 +139,7 @@ extension StatusBodyTableViewController
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         // 重置
+        
         statues?.statusBody = false
     }
 }

@@ -56,6 +56,7 @@ class HomeTableViewCell: UITableViewCell {
                 pic_size!.height == 0 ? make.bottom.equalTo(bottomView.snp_top).priorityHigh() : make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityHigh()
             }
             if !statues!.statusBody {
+       
                 bottomView.status = statues
             }
             

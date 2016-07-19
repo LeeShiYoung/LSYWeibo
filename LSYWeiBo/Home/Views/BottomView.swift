@@ -20,11 +20,13 @@ class BottomView: UIView {
     var status: Statuses? {
         
         didSet{
-            if status != nil {
-            setUpButtonInfo(reposts_count, count: (status?.reposts_count)!, title: "转发")
-            setUpButtonInfo(comments_count, count: (status?.comments_count)!, title: "评论")
-            setUpButtonInfo(attitudes_count, count: (status?.attitudes_count)!, title: "赞")
+
+            if let reposts_count = reposts_count {
+                setUpButtonInfo(reposts_count, count: (status?.reposts_count)!, title: "转发")
+                setUpButtonInfo(comments_count, count: (status?.comments_count)!, title: "评论")
+                setUpButtonInfo(attitudes_count, count: (status?.attitudes_count)!, title: "赞")
             }
+           
         }
     }
     
