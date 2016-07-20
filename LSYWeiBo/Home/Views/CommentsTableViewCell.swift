@@ -56,7 +56,6 @@ class CommentsHeaderView: UIView {
         didSet{
             forwardBtn.setTitle("转发 \(status?.reposts_count ?? 0)", forState: .Normal)
             commentsBtn.setTitle("评论 \(status?.comments_count ?? 0)", forState: .Normal)
-
         }
     }
 

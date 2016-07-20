@@ -154,7 +154,7 @@ class ForwardView: UIView {
     
     init() {
         super.init(frame: CGRectZero)
-        self.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
+        self.backgroundColor = color
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
