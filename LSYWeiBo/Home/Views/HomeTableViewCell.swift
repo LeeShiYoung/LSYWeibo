@@ -48,16 +48,15 @@ class HomeTableViewCell: UITableViewCell {
             topView.statues = statues
             pictureView.statues = statues
             pic_size = pictureView.calculationPicSize()
-           
+            
             pictureView.snp_updateConstraints { (make) in
                 make.height.equalTo(pic_size!.height).priorityHigh()
                 make.width.equalTo(pic_size!.width).priorityHigh()
                 
                 pic_size!.height == 0 ? make.bottom.equalTo(bottomView.snp_top).priorityHigh() : make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityHigh()
             }
-           
-                bottomView.status = statues
             
+            bottomView.status = statues
             
             // 微博正文 重新布局
             if statues!.statusBody {
@@ -114,21 +113,13 @@ class HomeTableViewCell: UITableViewCell {
     }
 
     // 顶部
-    lazy var topView: TopView = {
-        
-        let top = "TopView".loadNib(self) as! TopView
-        return top
-    }()
+    lazy var topView: TopView = "TopView".loadNib(self) as! TopView
     
     // 配图
     lazy var pictureView: PictureView = PictureView()
     
     // 底部
-    lazy var bottomView: BottomView = {
-        
-        let bottom = "BottomView".loadNib(self) as! BottomView
-        return bottom
-    }()
+    lazy var bottomView: BottomView = "BottomView".loadNib(self) as! BottomView
     
     // 转发背景
     lazy var forwardView = ForwardView()
