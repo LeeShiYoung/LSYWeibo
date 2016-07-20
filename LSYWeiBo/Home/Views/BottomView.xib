@@ -28,7 +28,9 @@
                     <state key="normal" title="赞" image="timeline_icon_unlike" backgroundImage="timeline_card_bottom_background">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="selected" image="timeline_icon_like"/>
+                    <state key="selected" image="timeline_icon_like" backgroundImage="timeline_card_bottom_background">
+                        <color key="titleColor" red="1" green="0.50120539860000002" blue="0.10001816700000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <state key="highlighted" backgroundImage="timeline_card_middle_background_highlighted"/>
                     <connections>
                         <action selector="attitudesClick:" destination="gBh-Kl-b5P" eventType="touchUpInside" id="wJ0-2R-LDk"/>

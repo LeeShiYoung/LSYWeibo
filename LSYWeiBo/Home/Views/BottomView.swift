@@ -22,26 +22,24 @@ class BottomView: UIView {
         didSet{
 
             if let reposts_count = reposts_count {
-                setUpButtonInfo(reposts_count, count: (status?.reposts_count)!, title: "转发", storage: false)
-                setUpButtonInfo(comments_count, count: (status?.comments_count)!, title: "评论", storage: false)
-                setUpButtonInfo(attitudes_count, count: (status?.attitudes_count)!, title: "赞", storage: false)
+                setUpButtonInfo(reposts_count, count: (status?.reposts_count)!, title: "转发")
+                setUpButtonInfo(comments_count, count: (status?.comments_count)!, title: "评论")
+                setUpButtonInfo(attitudes_count, count: (status?.attitudes_count)!, title: "赞")
             }
         }
     }
     
     // 设置按钮标题
-    private func setUpButtonInfo(btn: UIButton, count: Int, title: String, storage: Bool) {
+    private func setUpButtonInfo(btn: UIButton, count: Int, title: String) {
         
-        status!.attitudes ? btn.selected == true : btn.selected == false
-        
+        status?.attitudes == true ? (btn.selected = true) : (btn.selected = false)
         func configurationButton(title: String) {
 
             btn.setTitle(title, forState: UIControlState.Normal)
-            btn.setTitleColor(UIColor.orangeColor(), forState: .Selected)
         }
         
         count == 0 ? configurationButton(title) : configurationButton("\( count)")
-        status!.attitudes = storage
+        
     }
     
     @IBAction func commentsClick(sender: UIButton) {
@@ -50,13 +48,23 @@ class BottomView: UIView {
     
     @IBAction func attitudesClick(sender: UIButton) {
         
+        func upDateConfigurationButton(count: Int) {
+            sender.setTitle("\(count)", forState: .Normal)
+           
+            status?.attitudes = !status!.attitudes
+            status?.attitudes_count = count
+            
+            // 更新
+            StatusesDB.upDateStatuses(status!, newAttitudes: status!.attitudes)
+        }
+        
         sender.imageView!.transform = CGAffineTransformMakeScale(0.9, 0.9)
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIViewAnimationOptions(rawValue: 0), animations: {
             
             sender.imageView!.transform = CGAffineTransformIdentity
             sender.selected = !sender.selected
-            sender.selected ? self.setUpButtonInfo(sender, count: self.status!.attitudes_count+1, title: "赞", storage: true) :
-                self.setUpButtonInfo(sender, count: self.status!.attitudes_count, title: "赞", storage: true)
+            
+            sender.selected ? upDateConfigurationButton(self.status!.attitudes_count+1) : upDateConfigurationButton(self.status!.attitudes_count-1)
             }) { (_) in
                 
         }

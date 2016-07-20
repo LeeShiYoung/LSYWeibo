@@ -12,7 +12,7 @@ import ObjectMapper
 
 class StatusesDB: NSObject {
     
-    static var queue: FMDatabaseQueue?
+    private static var queue: FMDatabaseQueue?
     override class func initialize() {
         let path = "LSYWeiBo.sqlite".cacheDir()
         queue = FMDatabaseQueue(path: path)
@@ -20,7 +20,7 @@ class StatusesDB: NSObject {
         // 建表
         queue?.inDatabase({ (db) in
             do {
-                try db.executeUpdate("CREATE TABLE IF NOT EXISTS t_status (id integer PRIMARY KEY, status blob NOT NULL, statusesID integer NOT NULL);", values: nil)
+                try db.executeUpdate("CREATE TABLE IF NOT EXISTS t_status (id integer PRIMARY KEY, status blob NOT NULL, statusesID integer NOT NULL, attitudes boolean);", values: nil)
             } catch {
                 print("建表error: \(error)")
             }
@@ -32,11 +32,7 @@ class StatusesDB: NSObject {
         if stats.count == 0 {
             return
         }
-        
-        // 忽略属性
-//        Statuses.mj_setupIgnoredCodingPropertyNames { () -> [AnyObject]! in
-//            return ["statePic_URLs", "stateOriginal_URLs"]
-//        }
+  
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             for status in stats {
                 
@@ -44,7 +40,7 @@ class StatusesDB: NSObject {
                 let data = NSKeyedArchiver.archivedDataWithRootObject(statusJson)
                 queue?.inTransaction({ (db, back) in
                     do {
-                        try db.executeUpdate("INSERT OR REPLACE INTO t_status (status, statusesID) VALUES (?,?)", values: [data, status.id])
+                        try db.executeUpdate("INSERT OR REPLACE INTO t_status (status, statusesID, attitudes) VALUES (?,?,?)", values: [data, status.id, false])
                     } catch {
                         // 失败就回滚
                         back.memory = true
@@ -75,8 +71,10 @@ class StatusesDB: NSObject {
                     while result.next() {
                         
                         let data = result.dataForColumn("status")
+                        let attitudes = result.boolForColumn("attitudes")
                         let statusJson = NSKeyedUnarchiver.unarchiveObjectWithData(data)
                         let status = Mapper<Statuses>().map(statusJson)
+                        status?.attitudes = attitudes
                         if let status = status {
                             statuses.append(status)
                         }
@@ -89,5 +87,19 @@ class StatusesDB: NSObject {
                 }
             })
 //        }
+    }
+    
+    // 更新
+    class func upDateStatuses(status: Statuses, newAttitudes: Bool) {
+        
+        queue?.inDatabase({ (db) in
+            do {
+                let statusJson = status.toJSON()
+                let data = NSKeyedArchiver.archivedDataWithRootObject(statusJson)
+                try db.executeUpdate("update t_status set attitudes = ?, status = ? where statusesID = ?;", values: [newAttitudes, data, status.id])
+            } catch {
+                print("更新error: \(error)")
+            }
+        })
     }
 }

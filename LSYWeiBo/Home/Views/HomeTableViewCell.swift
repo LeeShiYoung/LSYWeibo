@@ -34,7 +34,7 @@ enum CellReuseIdentifier: String {
 protocol HomeTableViewCellDelegate: NSObjectProtocol {
     func downBtnDidSelected(btn: UIButton)
     func linkTap(link: String)
-    func forwardBtnClic(cell: HomeTableViewCell)
+    func forwardBtnClick(cell: HomeTableViewCell)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -55,10 +55,9 @@ class HomeTableViewCell: UITableViewCell {
                 
                 pic_size!.height == 0 ? make.bottom.equalTo(bottomView.snp_top).priorityHigh() : make.bottom.equalTo(bottomView.snp_top).offset(-10).priorityHigh()
             }
-            if !statues!.statusBody {
-       
+           
                 bottomView.status = statues
-            }
+            
             
             // 微博正文 重新布局
             if statues!.statusBody {
@@ -93,6 +92,11 @@ class HomeTableViewCell: UITableViewCell {
             
             self!.delegate?.linkTap(link)
         }
+        
+        // MARK: - 转发
+        forwardView.touchHandler = {[weak self] in
+            self!.delegate?.forwardBtnClick(self!)
+        }
     }
 
     // 布局
@@ -113,7 +117,6 @@ class HomeTableViewCell: UITableViewCell {
     lazy var topView: TopView = {
         
         let top = "TopView".loadNib(self) as! TopView
-        
         return top
     }()
     
@@ -122,17 +125,13 @@ class HomeTableViewCell: UITableViewCell {
     
     // 底部
     lazy var bottomView: BottomView = {
+        
         let bottom = "BottomView".loadNib(self) as! BottomView
         return bottom
     }()
     
     // 转发背景
-    lazy var backgroundButton: UIButton = {
-        let b = UIButton()
-        b.setUpBackGroundInfo("timeline_card_middle_background_highlighted")
-        b.addTarget(self, action: .bckBtnClick, forControlEvents: .TouchUpInside)
-        return b
-    }()
+    lazy var forwardView = ForwardView()
     
     // 转发内容
     lazy var forwardContent: HYLabel = {
@@ -143,13 +142,36 @@ class HomeTableViewCell: UITableViewCell {
         label.backgroundColor = UIColor.clearColor()
         return label
     }()
-    
-    @objc private func bckBtnDidClick(btn: UIButton) {
-        delegate?.forwardBtnClic(self)
-    }
 }
 
+private let color: UIColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
+private let hightColor: UIColor = UIColor(red: 236/255.0, green: 236/255.0, blue: 236/255.0, alpha: 1)
 
-private extension Selector {
-    static let bckBtnClick = #selector(HomeTableViewCell.bckBtnDidClick(_:))
+class ForwardView: UIView {
+   
+    private typealias touchEndHandler = () -> Void
+    private var touchHandler: touchEndHandler?
+    
+    init() {
+        super.init(frame: CGRectZero)
+        self.backgroundColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.backgroundColor = hightColor
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.backgroundColor = color
+        touchHandler!()
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        self.backgroundColor = color
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

@@ -102,12 +102,7 @@ class Statuses: Mappable {
      var comments_count: Int = 0
     
     // 表态数
-    var attitudes_count: Int = 0 {
-        didSet{
-            
-        }
-    }
-    
+    var attitudes_count: Int = 0
     // text 图文混排的 字符串
     var attributedString: NSAttributedString?
     
@@ -116,7 +111,7 @@ class Statuses: Mappable {
     
     // 已点赞
     var attitudes = false
-  
+    
     // 获取 微博 数据
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
         
@@ -140,7 +135,7 @@ class Statuses: Mappable {
   
             let modelArr = Mapper<Statuses>().mapArray(result["statuses"])
             if let modelArr = modelArr {
-            // 缓存数据
+                // 缓存数据
                 StatusesDB.seveStatus(modelArr)
                 // 获取图片尺寸
                 downLoadCachePictures(modelArr, statuses: datas)
@@ -253,5 +248,4 @@ class Statuses: Mappable {
         attitudes_count <- map["attitudes_count"]
         pic_urls <- map["pic_urls"]
     }
-    
 }

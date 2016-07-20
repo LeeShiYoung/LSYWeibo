@@ -321,7 +321,7 @@ extension HomeTableViewController: HomeTableViewCellDelegate
     }
     
     // 跳转 转发 微博正文
-    func forwardBtnClic(cell: HomeTableViewCell) {
+    func forwardBtnClick(cell: HomeTableViewCell) {
         var index:Int = 0
         let indexPath = tableView.indexPathForCell(cell)
         index = indexPath!.row

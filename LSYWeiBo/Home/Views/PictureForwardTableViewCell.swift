@@ -34,8 +34,8 @@ class PictureForwardTableViewCell: HomeTableViewCell {
          
         }
 
-        contentView.insertSubview(backgroundButton, belowSubview: pictureView)
-        backgroundButton.addSubview(forwardContent)
+        contentView.insertSubview(forwardView, belowSubview: pictureView)
+        forwardView.addSubview(forwardContent)
         
         // 布局
         forwardContent.snp_makeConstraints { (make) in
@@ -57,7 +57,7 @@ class PictureForwardTableViewCell: HomeTableViewCell {
             make.bottom.equalTo(contentView.snp_bottom)
         }
         
-        backgroundButton.snp_makeConstraints { (make) in
+        forwardView.snp_makeConstraints { (make) in
             make.top.equalTo(topView.snp_bottom)
             make.left.equalTo(contentView.snp_left)
             make.right.equalTo(contentView.snp_right)
