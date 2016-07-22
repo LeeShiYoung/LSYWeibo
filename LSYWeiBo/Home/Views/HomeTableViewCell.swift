@@ -60,11 +60,7 @@ class HomeTableViewCell: UITableViewCell {
             
             // 微博正文 重新布局
             if statues!.statusBody {
-                
-//               _ = bottomView.subviews.map({ (button) -> Void in
-//                    button.removeFromSuperview()
-//                    button.snp_removeConstraints()
-//                })
+
                 _ = bottomView.subviews.map{$0.removeFromSuperview();$0.snp_removeConstraints()}
                 
                 bottomView.snp_updateConstraints(closure: { (make) in
