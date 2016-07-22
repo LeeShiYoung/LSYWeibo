@@ -14,7 +14,7 @@ let baseURL = "https://api.weibo.com/"
 class NetWorkTools: NSObject {
     
     //GET
-    class func GET_Request(http: String, parameters: [String: AnyObject]?, success:(result: [String: AnyObject]) -> (), filed:(error:NSError?) -> ()) {
+    class func GET_Request(http: String, parameters: [String: AnyObject]?, success:(result: [String: AnyObject]) -> (), filed:(error: NSError?) -> ()) {
         
         let urlStr = baseURL + http
         Alamofire.request(.GET, urlStr, parameters: parameters)
@@ -33,7 +33,7 @@ class NetWorkTools: NSObject {
     }
     
     // POST
-    class func POST_Request(http: String, parameters: [String: AnyObject], success:(result: [String: AnyObject]) -> (), filed:(error:NSError?) -> ()) {
+    class func POST_Request(http: String, parameters: [String: AnyObject], success:(result: [String: AnyObject]) -> (), filed:(error: NSError?) -> ()) {
         
         let urlStr = baseURL + http
         Alamofire.request(.POST, urlStr, parameters: parameters)

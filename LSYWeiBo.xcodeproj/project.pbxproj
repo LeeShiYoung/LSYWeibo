@@ -68,7 +68,6 @@
 		C98B1A831D20CCC700E94163 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B1A751D20CCC700E94163 /* BottomView.swift */; };
 		C98B1A841D20CCC700E94163 /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B1A761D20CCC700E94163 /* BottomView.xib */; };
 		C98B1A851D20CCC700E94163 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B1A771D20CCC700E94163 /* HomeTableViewCell.swift */; };
-		C98B1A861D20CCC700E94163 /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B1A781D20CCC700E94163 /* PictureCollectionViewCell.xib */; };
 		C98B1A871D20CCC700E94163 /* PictureForwardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B1A791D20CCC700E94163 /* PictureForwardTableViewCell.swift */; };
 		C98B1A881D20CCC700E94163 /* PictureOriginalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B1A7A1D20CCC700E94163 /* PictureOriginalTableViewCell.swift */; };
 		C98B1A891D20CCC700E94163 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B1A7B1D20CCC700E94163 /* PictureView.swift */; };
@@ -186,7 +185,6 @@
 		C98B1A751D20CCC700E94163 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		C98B1A761D20CCC700E94163 /* BottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
 		C98B1A771D20CCC700E94163 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		C98B1A781D20CCC700E94163 /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
 		C98B1A791D20CCC700E94163 /* PictureForwardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureForwardTableViewCell.swift; sourceTree = "<group>"; };
 		C98B1A7A1D20CCC700E94163 /* PictureOriginalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureOriginalTableViewCell.swift; sourceTree = "<group>"; };
 		C98B1A7B1D20CCC700E94163 /* PictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
@@ -522,7 +520,6 @@
 				C98B1A791D20CCC700E94163 /* PictureForwardTableViewCell.swift */,
 				C98B1A7B1D20CCC700E94163 /* PictureView.swift */,
 				C98B1A7A1D20CCC700E94163 /* PictureOriginalTableViewCell.swift */,
-				C98B1A781D20CCC700E94163 /* PictureCollectionViewCell.xib */,
 				C98B1A7C1D20CCC700E94163 /* SearchBar.xib */,
 				C98B1A7D1D20CCC700E94163 /* StatuesMessage.swift */,
 				C98B1A7E1D20CCC700E94163 /* StatuesMessage.xib */,
@@ -686,7 +683,6 @@
 				1F46C4111CD5225D006AECF8 /* ProfileTableViewController.storyboard in Resources */,
 				C98B1A841D20CCC700E94163 /* BottomView.xib in Resources */,
 				C95BF93B1CDC9A8B00F6B5E6 /* WelcomeViewController.storyboard in Resources */,
-				C98B1A861D20CCC700E94163 /* PictureCollectionViewCell.xib in Resources */,
 				C95BF8901CD9E9D300F6B5E6 /* StartButton.xib in Resources */,
 				C98B1A8A1D20CCC700E94163 /* SearchBar.xib in Resources */,
 				C95BF88C1CD9DC2F00F6B5E6 /* NewfeatureCollectionViewController.storyboard in Resources */,

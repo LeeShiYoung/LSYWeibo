@@ -30,7 +30,8 @@ class PictureView: UICollectionView {
         super.init(frame: CGRectZero, collectionViewLayout: pictureLayout)
         self.scrollEnabled = false
         // 注册 cell
-        registerNib(UINib(nibName: "PictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PictureReuseIdentifier)
+//        registerNib(UINib(nibName: "PictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PictureReuseIdentifier)
+        registerClass(PictureCollectionViewCell.self, forCellWithReuseIdentifier: PictureReuseIdentifier)
         dataSource = self
         delegate = self
         backgroundColor = UIColor.whiteColor()
@@ -183,34 +184,46 @@ extension PictureView: UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - UICollectionViewCell
 class PictureCollectionViewCell: UICollectionViewCell {
  
-    @IBOutlet weak var tyoeIcon: UIImageView!
-    @IBOutlet weak var picView: UIImageView!
     var p_url: NSURL? {
         didSet{
-       
-            // 获取小图
-            let thumbnailImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(p_url!.absoluteString)
-            picView.sd_setImageWithURL(p_url, placeholderImage: thumbnailImage) {[weak self] (image, error, _, url) in
+  
+            SDWebImageManager.sharedManager().downloadImageWithURL(p_url, options: SDWebImageOptions(rawValue: 0), progress: nil) { (image, error, _, _, url) in
                 
+                self.picView.layer.contents = image.CGImage
                 if url.absoluteString.rangeOfString("large") != nil {
-                    self!.tyoeIcon.image = nil
+                    self.layer.contents = nil
                     return
                 }
-                
                 if url.pathExtension == "gif" || url.pathExtension == "GIF" {
-                    self!.tyoeIcon.image = UIImage(named: "timeline_image_gif")
+                    self.typeIcon.layer.contents = UIImage(named: "timeline_image_gif")!.CGImage
                 } else if image.size.width / image.size.height < 0.4 {
-                    self!.tyoeIcon.image = UIImage(named: "timeline_image_longimage")
+                    self.typeIcon.layer.contents = UIImage(named: "timeline_image_longimage")!.CGImage
                 } else {
-                    self!.tyoeIcon.image = nil
+                    self.typeIcon.layer.contents = nil
                 }
             }
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.addSubview(picView)
+        picView.addSubview(typeIcon)
+        picView.contentMode = UIViewContentMode.ScaleAspectFill
+        picView.clipsToBounds = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        picView.frame = contentView.bounds
+        typeIcon.frame = CGRect(x: picView.frame.size.width-28, y: picView.frame.size.height-18, width: 28, height: 18)
+    }
+
+    private lazy var picView = UIView()
+    private lazy var typeIcon = UIView()
+    
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-    } 
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
