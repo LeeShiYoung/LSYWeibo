@@ -18,6 +18,7 @@ class PictureForwardTableViewCell: HomeTableViewCell {
     
     override func setUI() {
         super.setUI()
+        pictureView.backgroundColor = color
         // 监听@谁谁谁的点击
         forwardContent.userTapHandler = { (label, user, range) in
    

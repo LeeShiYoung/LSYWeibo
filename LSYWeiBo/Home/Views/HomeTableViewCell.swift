@@ -130,13 +130,13 @@ class HomeTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = UIColor.darkGrayColor()
         label.opaque = true
-        label.backgroundColor = UIColor.clearColor()
+        label.backgroundColor = color
         return label
     }()
 }
 
-private let color: UIColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
-private let hightColor: UIColor = UIColor(red: 236/255.0, green: 236/255.0, blue: 236/255.0, alpha: 1)
+let color: UIColor = UIColor(red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1)
+let hightColor: UIColor = UIColor(red: 236/255.0, green: 236/255.0, blue: 236/255.0, alpha: 1)
 
 class ForwardView: UIView {
    
@@ -150,15 +150,25 @@ class ForwardView: UIView {
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.backgroundColor = hightColor
+   
+        self.subviews.forEach { (view) in
+            view.backgroundColor = hightColor
+        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.backgroundColor = color
+        self.subviews.forEach { (view) in
+            view.backgroundColor = color
+        }
         touchHandler!()
     }
     
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         self.backgroundColor = color
+        self.subviews.forEach { (view) in
+            view.backgroundColor = color
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
