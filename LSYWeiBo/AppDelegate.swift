@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+    
+       
         //注册通知 用于 切换 控制器
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.changeViewController(_:)), name: AppdelegateNotifiKey, object: nil)
         

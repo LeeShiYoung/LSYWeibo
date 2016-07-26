@@ -116,41 +116,39 @@ class Statuses: Mappable {
     class func loadStatuses(since: Int, max: Int, datas:(statuses: [Statuses]) -> (), field:(error: NSError?) -> ()) {
         
         // 读取缓存数据
-        StatusesDB.readStatus(since, max: max) { (statuses, error) in
-       
-            if statuses.count != 0 {// 有缓存
+        do {
+            let statuses = try StatusesDB.readStatus(since, max: max)
+            downLoadCachePictures(statuses, statuses: datas)
+            
+        } catch {
+            
+            // 读取 accessToken
+            let accessToken = UserAccount.loadAccount()?.access_token
+            var parameters: [String: AnyObject] = ["access_token": accessToken!, "count": 10]
+            
+            parameters["since_id"] = since
+            parameters["max_id"] = max
+            
+            NetWorkTools.GET_Request("2/statuses/home_timeline.json", parameters: parameters, success: { (result) in
                 
-                downLoadCachePictures(statuses, statuses: datas)
-                return
-            }
-            
-        // 读取 accessToken
-        let accessToken = UserAccount.loadAccount()?.access_token
-        var parameters: [String: AnyObject] = ["access_token": accessToken!, "count": 10]
-        
-        parameters["since_id"] = since
-        parameters["max_id"] = max
-        
-        NetWorkTools.GET_Request("2/statuses/home_timeline.json", parameters: parameters, success: { (result) in
-  
-            let modelArr = Mapper<Statuses>().mapArray(result["statuses"])
-            if let modelArr = modelArr {
-                // 缓存数据
-                StatusesDB.seveStatus(modelArr)
-                // 获取图片尺寸
-                downLoadCachePictures(modelArr, statuses: datas)
-            } else {
+                let modelArr = Mapper<Statuses>().mapArray(result["statuses"])
+                if let modelArr = modelArr {
+                    // 缓存数据
+                    StatusesDB.seveStatus(modelArr)
+                    // 获取图片尺寸
+                    downLoadCachePictures(modelArr, statuses: datas)
+                } else {
+                    
+                    field(error: nil)
+                }
                 
-                field(error: nil)
-            }
-            
-        }) { (error) in
-            
-            field(error: error)
+            }) { (error) in
+                
+                field(error: error)
             }
         }
     }
-    
+
     // 缓存 配图尺寸
     private class func downLoadCachePictures(statues: [Statuses], statuses:(statuses: [Statuses]) -> ()) {
         

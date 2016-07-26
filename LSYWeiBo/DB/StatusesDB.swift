@@ -51,8 +51,13 @@ class StatusesDB: NSObject {
         }
     }
     
+    enum DBError: ErrorType {
+        case NonData, SQLError
+    }
     //MARK: - 读取微博
-    class func readStatus(since: Int, max: Int, finsih: (statuses: [Statuses], error: ErrorType?) -> ()) {
+    class func readStatus(since: Int, max: Int) throws -> [Statuses] {
+        
+        var sqlError: DBError?
         var sql = "SELECT * FROM t_status "
         if since > 0 {
             sql += "WHERE statusesID > \(since) "
@@ -64,7 +69,7 @@ class StatusesDB: NSObject {
         sql += "LIMIT 10;"
         
         var statuses = [Statuses]()
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+
             queue?.inDatabase({ (db) in
                 do {
                     let result = try db.executeQuery(sql, values: nil)
@@ -79,14 +84,19 @@ class StatusesDB: NSObject {
                             statuses.append(status)
                         }
                     }
-                    finsih(statuses: statuses, error: nil)
                 } catch {
-                    
                     print("保存error: \(error)")
-                    finsih(statuses: statuses, error: error)
+                    sqlError = DBError.SQLError
                 }
             })
-//        }
+        if sqlError != nil {
+            throw DBError.SQLError
+        }
+        
+        if statuses.count == 0 {
+            throw DBError.NonData
+        }
+        return statuses
     }
     
     // 更新
