@@ -27,18 +27,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="112" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaL-Je-xfh">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CQ4-pm-WnM">
                                             <rect key="frame" x="0.0" y="0.0" width="112" height="105"/>
-                                            <state key="normal" backgroundImage="compose_pic_add"/>
-                                            <connections>
-                                                <action selector="selectBtnClick:" destination="nMh-rJ-zO8" eventType="touchUpInside" id="vOB-QL-hOl"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okF-9L-rJ8">
-                                            <rect key="frame" x="86" y="2" width="24" height="24"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oke-yR-FAt">
+                                            <rect key="frame" x="83" y="5" width="24" height="24"/>
                                             <state key="normal" backgroundImage="compose_photo_close"/>
                                             <connections>
-                                                <action selector="removeBtnClick:" destination="nMh-rJ-zO8" eventType="touchUpInside" id="Osb-5s-g3U"/>
+                                                <action selector="removeBtnClick:" destination="nMh-rJ-zO8" eventType="touchUpInside" id="TNr-YW-5Q3"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -46,16 +42,16 @@
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="KaL-Je-xfh" firstAttribute="leading" secondItem="nMh-rJ-zO8" secondAttribute="leading" id="8UD-oH-RQ5"/>
-                                    <constraint firstItem="okF-9L-rJ8" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" constant="2" id="9st-cK-qce"/>
-                                    <constraint firstAttribute="trailing" secondItem="okF-9L-rJ8" secondAttribute="trailing" constant="2" id="NYx-KS-2t6"/>
-                                    <constraint firstItem="KaL-Je-xfh" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" id="Yv2-rc-HOb"/>
-                                    <constraint firstAttribute="trailing" secondItem="KaL-Je-xfh" secondAttribute="trailing" id="j6J-bB-H2O"/>
-                                    <constraint firstAttribute="bottom" secondItem="KaL-Je-xfh" secondAttribute="bottom" id="ohH-f6-wr5"/>
+                                    <constraint firstItem="Oke-yR-FAt" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" constant="5" id="3gQ-hC-Vik"/>
+                                    <constraint firstItem="CQ4-pm-WnM" firstAttribute="top" secondItem="nMh-rJ-zO8" secondAttribute="top" id="Dlm-ca-lUa"/>
+                                    <constraint firstAttribute="trailing" secondItem="CQ4-pm-WnM" secondAttribute="trailing" id="fDL-Gh-QAb"/>
+                                    <constraint firstAttribute="bottom" secondItem="CQ4-pm-WnM" secondAttribute="bottom" id="hVd-Ri-fbK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oke-yR-FAt" secondAttribute="trailing" constant="5" id="tIa-r5-IAD"/>
+                                    <constraint firstItem="CQ4-pm-WnM" firstAttribute="leading" secondItem="nMh-rJ-zO8" secondAttribute="leading" id="xvU-nz-3w8"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="removeButton" destination="okF-9L-rJ8" id="m7k-Zw-fJD"/>
-                                    <outlet property="selectButton" destination="KaL-Je-xfh" id="f02-Ga-vfS"/>
+                                    <outlet property="removeButton" destination="Oke-yR-FAt" id="k8t-tZ-UE3"/>
+                                    <outlet property="selectedImage" destination="CQ4-pm-WnM" id="gTf-kw-20f"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -67,11 +63,10 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yUG-M3-JOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="221"/>
+            <point key="canvasLocation" x="397" y="196"/>
         </scene>
     </scenes>
     <resources>
         <image name="compose_photo_close" width="24" height="24"/>
-        <image name="compose_pic_add" width="70" height="70"/>
     </resources>
 </document>

@@ -17,12 +17,13 @@ class PictureButtonCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: PictureButtonCellDelegate?
     
-    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var selectedImage: UIImageView!
+    
     @IBOutlet weak var removeButton: UIButton!
     
     var picture: Pictures? {
         didSet{
-            selectButton.setBackgroundImage(picture?.image, forState: UIControlState.Normal)
+           selectedImage.image = picture?.image
             picture?.isRemove == false ? isRemoveBtn() : unRemoveBtn()
             
         }
@@ -38,20 +39,21 @@ class PictureButtonCollectionViewCell: UICollectionViewCell {
         removeButton.enabled = true
     }
     
-    @IBAction func selectBtnClick(sender: UIButton) {
+    @IBAction func removeBtnClick(sender: UIButton) {
+        delegate?.removeBtnClick(sender.tag - 3000)
+    }
+    
+    @objc private func selectedBtnClick(sender: UIButton) {
 
         delegate?.showPictureSelector(self)
     }
     
-    @IBAction func removeBtnClick(sender: UIButton) {
-
-        delegate?.removeBtnClick(sender.tag - 3000)
-       
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectButton.imageView?.contentMode = .ScaleAspectFill
+     
+        selectedImage.userInteractionEnabled = true
+        let tapGes = UITapGestureRecognizer(target: self, action: .selectedBtnClick)
+        selectedImage.addGestureRecognizer(tapGes)
     }
 }
 
@@ -70,4 +72,8 @@ class PictureSelectorFlowLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = margin
         minimumInteritemSpacing = margin
     }
+}
+
+private extension Selector {
+    static let selectedBtnClick = #selector(PictureButtonCollectionViewCell.selectedBtnClick(_:))
 }
