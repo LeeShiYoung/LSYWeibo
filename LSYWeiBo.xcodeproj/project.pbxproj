@@ -95,7 +95,6 @@
 		C9D0908A1D21141F00DF6D70 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D090891D21141F00DF6D70 /* WebViewController.swift */; };
 		C9D769541CF2B3AB00603598 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D769531CF2B3AB00603598 /* Emoticons.bundle */; };
 		C9D769561CF2B4DE00603598 /* EmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D769551CF2B4DE00603598 /* EmoticonPackage.swift */; };
-		C9EA02EE1CEEDDA5007E61B8 /* KtCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA02ED1CEEDDA5007E61B8 /* KtCorner.swift */; };
 		C9F4E79D1D2522B800B7E351 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4E79C1D2522B800B7E351 /* OverlayView.swift */; };
 /* End PBXBuildFile section */
 
@@ -217,7 +216,6 @@
 		C9D090891D21141F00DF6D70 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C9D769531CF2B3AB00603598 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
 		C9D769551CF2B4DE00603598 /* EmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonPackage.swift; sourceTree = "<group>"; };
-		C9EA02ED1CEEDDA5007E61B8 /* KtCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KtCorner.swift; sourceTree = "<group>"; };
 		C9F4E79C1D2522B800B7E351 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		E71A22D1273BF3EE69095709 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -455,7 +453,6 @@
 				C98F9F731D0CF8DF00789478 /* imageScout */,
 				C9B8F0DF1CF82CD60047CF39 /* Category.swift */,
 				C9B8F0E01CF82CD60047CF39 /* TitleButton.swift */,
-				C9EA02ED1CEEDDA5007E61B8 /* KtCorner.swift */,
 				C95BF8941CD9FA6900F6B5E6 /* NetWorkTools.swift */,
 				C98B1A9B1D20F47A00E94163 /* ReachabilityManger.swift */,
 			);
@@ -813,7 +810,6 @@
 				C93C27B91CFFD7320076E113 /* QRViewController.swift in Sources */,
 				1F46C4071CD52096006AECF8 /* MessageTableViewController.swift in Sources */,
 				C98B1A851D20CCC700E94163 /* HomeTableViewCell.swift in Sources */,
-				C9EA02EE1CEEDDA5007E61B8 /* KtCorner.swift in Sources */,
 				C98B1A871D20CCC700E94163 /* PictureForwardTableViewCell.swift in Sources */,
 				1FDEC6621CF088A30079770A /* EmojiViewController.swift in Sources */,
 				C96AAE451D26479C00D8644C /* LSYPhotoBrowserViewController.swift in Sources */,

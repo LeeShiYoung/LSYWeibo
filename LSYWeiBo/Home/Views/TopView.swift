@@ -42,8 +42,8 @@ class TopView: UIView {
     var statues: Statuses? {
         didSet{
             
-            iconView.sd_setImageWithURL(statues?.user?.imageURL)
-            iconView.kt_addCorner(radius: 25)
+            iconView.LSY_CircleImage(url: statues?.user?.imageURL)
+ 
             nameLabel.text = statues?.user?.name
             
             nameLabel.textColor = statues?.user?.mbrank_Color

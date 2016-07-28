@@ -187,8 +187,11 @@ class PictureCollectionViewCell: UICollectionViewCell {
     var p_url: NSURL? {
         didSet{
   
+            picView.layer.contents = nil
             SDWebImageManager.sharedManager().downloadImageWithURL(p_url, options: SDWebImageOptions(rawValue: 0), progress: nil) { (image, error, _, _, url) in
                 
+                /*self.performSelector(#selector(PictureCollectionViewCell.setImageToPicView(_:)), withObject: image, afterDelay: 0, inModes: [NSDefaultRunLoopMode])*/
+         
                 self.picView.layer.contents = image.CGImage
                 if url.absoluteString.rangeOfString("large") != nil {
                     self.layer.contents = nil
@@ -205,6 +208,9 @@ class PictureCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @objc private func setImageToPicView(any: AnyObject) {
+        picView.layer.contents = (any as? UIImage)?.CGImage
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(picView)

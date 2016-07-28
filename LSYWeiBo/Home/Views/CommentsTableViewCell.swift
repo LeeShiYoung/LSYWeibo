@@ -9,6 +9,7 @@
 import UIKit
 import HYLabel
 import SnapKit
+import SDWebImage
 
 class CommentsTableViewCell: UITableViewCell {
 
@@ -21,8 +22,7 @@ class CommentsTableViewCell: UITableViewCell {
     var comments: Comments? {
         didSet{
             commentsContent.attributedText = comments?.attributedText
-            userIcon.sd_setImageWithURL(comments?.user?.imageURL)
-            userIcon.kt_addCorner(radius: 30/2)
+            userIcon.LSY_CircleImage(url: comments?.user?.imageURL)
             userName.text = comments?.user?.name
             userName.textColor = comments?.user?.mbrank_Color
             commentsTime.text = comments?.created_at_Str

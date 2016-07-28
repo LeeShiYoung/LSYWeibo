@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController {
         
         // 加载用户头像
         let iconStr = UserAccount.loadAccount()?.avatar_large
-        userIcon.sd_setImageWithURL(NSURL(string: iconStr!))
+        userIcon.LSY_CircleImage(url: NSURL(string: iconStr!))
     }
     
     override func viewDidLoad() {

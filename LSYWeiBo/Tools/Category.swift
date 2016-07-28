@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import CoreGraphics
+import SDWebImage
+
 extension NSDate {
     class func dateWithStr(time: String) ->NSDate {
 
@@ -166,8 +167,6 @@ extension UIBarButtonItem {
         
         self.init(customView: btn)
     }
-    
-    
 }
 
 extension UIButton
@@ -234,3 +233,71 @@ extension UIImageView {
         }
     }
 }
+
+extension UIImageView {
+    func LSY_CircleImage(url url: NSURL?) {
+        
+        SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil) { (image, error, _, _, url) in
+            
+            autoreleasepool({
+      
+                if error != nil {
+                    return
+                }
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    
+                    // 开启上下文
+                    UIGraphicsBeginImageContext(self.frame.size)
+                    
+                    // 获取当前上下文
+                    let context = UIGraphicsGetCurrentContext()
+                    
+                    // 开启上下文栈
+                    CGContextSaveGState(context)
+                    
+                    let lineWidth:CGFloat = 1.0
+                    
+                    // 绘制一条圆的线
+                    CGContextAddArc(context, self.frame.width / 2.0, self.frame.height / 2.0, (self.frame.width - lineWidth) / 2.0, 0.0, CGFloat(M_PI) * 2, 0)
+                    
+                    // 设置线宽
+                    CGContextSetLineWidth(context, lineWidth)
+                    
+                    // 设置线的颜色
+                    CGContextSetStrokeColorWithColor(context, UIColor.lightGrayColor().CGColor)
+                    
+                    // 关闭上下文
+                    CGContextStrokePath(context)
+                    
+                    // 从下文栈中取出上下文
+                    CGContextRestoreGState(context)
+                    
+                    let rect = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                    
+                    // 绘制个圆
+                    CGContextAddEllipseInRect(context, rect)
+                    
+                    // 剪裁多余部分
+                    CGContextClip(context)
+                    
+                    // 将 iamge 绘制在当前上下文中
+                    image.drawInRect(rect)
+                    
+                    // 得到新绘制到的 image
+                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                    
+                    // 关闭上下文
+                    UIGraphicsEndImageContext()
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        // 回到主线程显示
+                        self.image = newImage
+                    }
+                }
+            })
+        }
+    }
+}
+
